@@ -15,7 +15,18 @@
     </p>
   </div>
   <p class="panel-tabs">
-    <a class="button is-primary" href="/employee/new">Add New Employee</a>
+    <a class="is-primary is-outlined"><span class="icon is-small is-left">
+        <i class="fa fa-check"></i>
+      </span></a>
+    <a class="is-primary is-outlined"><span class="icon is-small is-left">
+        <i class="fa fa-sort"></i>
+      </span></a>
+    <a class="is-primary is-outlined" href="/employee/new"><span class="icon is-small is-left">
+        <i class="fa fa-plus"></i>
+      </span></a>
+    <a class="is-primary is-outlined"><span class="icon is-small is-left">
+        <i class="fa fa-dollar"></i>
+      </span></a>
   </p>
 @foreach($employees as $employee)
     
