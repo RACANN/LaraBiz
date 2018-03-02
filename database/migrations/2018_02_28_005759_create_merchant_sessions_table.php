@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShiftsTable extends Migration
+class CreateMerchantSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateShiftsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shifts', function (Blueprint $table) {
+        Schema::create('merchant_sessions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('employee_id');
-            $table->dateTime('shift_start');
-            $table->dateTime('shift_end');
-            $table->boolean('open')->default('true');
+            $table->dateTime('merchant_session_start');
+            $table->dateTime('merchant_session_end');
+            $table->double('cash_start');
+            $table->double('cash_end');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateShiftsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shifts');
+        Schema::dropIfExists('merchant_sessions');
     }
 }

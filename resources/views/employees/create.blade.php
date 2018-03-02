@@ -1,90 +1,69 @@
 @extends('layouts.master')
 @section('content')
 
-<form method="POST">
+<form method="POST" action="/employees">
   {{ csrf_field() }}
-<div class="field">
-  <label class="label">Name</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Text input">
-  </div>
-</div>
-
-<div class="field">
-  <label class="label">Username</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </div>
-  <p class="help is-success">This username is available</p>
-</div>
-
-<div class="field">
-  <label class="label">Email</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
-  </div>
-  <p class="help is-danger">This email is invalid</p>
-</div>
-
-<div class="field">
-  <label class="label">Subject</label>
-  <div class="control">
-    <div class="select">
-      <select>
-        <option>Select dropdown</option>
-        <option>With options</option>
-      </select>
+  <div class="field">
+    <label class="label">Employee Number</label>
+    <div class="control">
+      <input class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" name="employee_number" maxlength="4" required>
     </div>
   </div>
-</div>
-
 <div class="field">
-  <label class="label">Message</label>
+  <label class="label">First Name</label>
   <div class="control">
-    <textarea class="textarea" placeholder="Textarea"></textarea>
+    <input class="input" type="text" name="first_name" required>
   </div>
 </div>
-
-<div class="field">
-  <div class="control">
-    <label class="checkbox">
-      <input type="checkbox">
-      I agree to the <a href="#">terms and conditions</a>
-    </label>
+  <div class="field">
+    <label class="label">Last Name</label>
+    <div class="control">
+      <input class="input" type="text"  name="last_name" required>
+    </div>
   </div>
-</div>
-
-<div class="field">
-  <div class="control">
-    <label class="radio">
-      <input type="radio" name="question">
-      Yes
-    </label>
-    <label class="radio">
-      <input type="radio" name="question">
-      No
-    </label>
+  <div class="field">
+    <label class="label">Social Security Number</label>
+    <div class="control">
+      <input class="input" type="text" name="ssn" required>
+    </div>
   </div>
-</div>
 
+  <div class="field">
+    <label class="label">Birth Date</label>
+    <div class="control">
+      <input class="input" type="date" name="birth_date" required>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Hire Date</label>
+    <div class="control">
+      <input class="input" type="date" name="hire_date" required>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Phone</label>
+    <div class="control">
+      <input class="input" type="text" name="phone" required>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control">
+      <input class="input" type="email" name="email" required>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Pay</label>
+    <div class="control">
+      <input class="input" type="text" name="pay" required>
+    </div>
+  </div>
 <div class="field is-grouped">
   <div class="control">
-    <button class="button is-link">Submit</button>
+    <button class="button is-link" type="submit">Add New Employee</button>
   </div>
   <div class="control">
-    <button class="button is-text">Cancel</button>
+    <a href="/employees" class="button is-link">Cancel</a>
   </div>
 </div>
 </form>

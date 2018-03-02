@@ -21,10 +21,17 @@
         <p>Hire Date: {{$employee->hire_date}}</p>
         <p>Pay: {{$employee->pay}}</p>
         <span class="icon is-small is-left">
-       <a><i class="fa fa-edit"></i></a>
+            <form>
+            <button class="is-link"><a href="/employees/{{$employee->id }}/edit"><i class="fa fa-edit"></i></a></button>
+            </form>
       </span>
-      <span class="icon is-small is-left">
-        <a><i class="fa fa-trash"></i></a>
+        <span class="icon is-small is-left">
+            <form action="{{ url('employees/'.$employee->id) }}" method="POST">
+            {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button class="is-link" type="submit"><i class="fa fa-trash"></i></button>
+        </form>
+
       </span>
     </div>
   </div>

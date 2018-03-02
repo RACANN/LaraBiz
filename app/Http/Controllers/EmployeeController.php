@@ -134,8 +134,9 @@ class EmployeeController extends Controller
      * @param  \App\employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
+        $employee = Employee::find($id);
         $employee->delete();
         return redirect('/employees');
     }

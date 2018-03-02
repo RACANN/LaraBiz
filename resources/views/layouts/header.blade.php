@@ -5,6 +5,9 @@
     </a>
 
     <a  class="navbar-item" href="/employees/">Employees</a>
+    <a  class="navbar-item" href="#">Shifts</a>
+    <a  class="navbar-item" href="#">Orders</a>
+    <a  class="navbar-item" href="#">Inventory</a>
 
     <div class="navbar-burger">
       <span></span>

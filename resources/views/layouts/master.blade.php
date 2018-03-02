@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <title>Mercury</title>
-    </script>
   </head>
   <body>
   <section class="section">
@@ -26,6 +25,8 @@
 
       <div class="row">
         @include('layouts.header')
+
+        <br />
 
         @yield('content')
         
