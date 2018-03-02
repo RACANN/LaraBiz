@@ -8,3 +8,12 @@
   </div>
 </footer>
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+<script>
+    function confirmDelete(form) {
+        if (confirm('Are you sure you want to delete this record? This action cannot be undone.')) {
+            form.submit();
+        } else {
+            // Do nothing!
+        }
+    }
+</script>

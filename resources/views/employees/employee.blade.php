@@ -13,7 +13,7 @@
     </div>
 
     <div class="content">
-      
+
         <p>First Name: {{$employee->first_name}}</p>
         <p>Last Name: {{$employee->last_name}}</p>
         <p>Phone: {{$employee->phone}}</p>
@@ -22,14 +22,14 @@
         <p>Pay: {{$employee->pay}}</p>
         <span class="icon is-small is-left">
             <form>
-            <button class="is-link"><a href="/employees/{{$employee->id }}/edit"><i class="fa fa-edit"></i></a></button>
+                <a href="/employees/{{$employee->id }}/edit"><i class="fa fa-edit"></i></a>
             </form>
       </span>
         <span class="icon is-small is-left">
-            <form action="{{ url('employees/'.$employee->id) }}" method="POST">
+            <form id="deleteForm" action="{{ url('employees/'.$employee->id) }}" method="POST">
             {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button class="is-link" type="submit"><i class="fa fa-trash"></i></button>
+                <a><i class="fa fa-trash" onclick="confirmDelete(document.getElementById('deleteForm'))"></i></a>
         </form>
 
       </span>

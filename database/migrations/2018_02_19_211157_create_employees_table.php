@@ -24,6 +24,7 @@ class CreateEmployeesTable extends Migration
             $table->dateTime('birth_date');
             $table->dateTime('hire_date');
             $table->double('pay');
+            $table->string('position');
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use App\Shift;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class ShiftController extends Controller
      */
     public function index()
     {
-        //
+        $shifts = Shift::all();
+
+        return view('shifts.index', compact('shifts'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ShiftController extends Controller
      */
     public function create()
     {
-        //
+        return view('shifts.create');
     }
 
     /**
@@ -35,7 +38,16 @@ class ShiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shift = new Shift;
+
+        $employee = Employee::where('employee_number', '=', request('employee_number'))->first();
+
+        $shift->employee_id = $employee->id;
+
+        $shift->shift_start = request('shift_start');
+
+        $shift->save();
+
     }
 
     /**
@@ -57,7 +69,7 @@ class ShiftController extends Controller
      */
     public function edit(Shift $shift)
     {
-        //
+        return view ('shifts.edit', 'shift');
     }
 
     /**
@@ -69,7 +81,19 @@ class ShiftController extends Controller
      */
     public function update(Request $request, Shift $shift)
     {
-        //
+        $shift = new Shift;
+
+        $employee = Employee::where('employee_number', '=', request('employee_number'))->first();
+
+        $shift->employee_id = $employee->id;
+
+        $shift->shift_start = request('shift_start');
+        $shift->break_start = request('break_start');
+        $shift->break_end = request('break_end');
+        $shift->shift_end = request('shift_end');
+        $shift->open = request('open');
+
+        $shift->save();
     }
 
     /**

@@ -25,6 +25,15 @@ Route::post('/employees', 'EmployeeController@store');
 Route::patch('/employees/{employee}', 'EmployeeController@update');
 Route::delete('/employees/{employee}', 'EmployeeController@destroy');
 
+
+Route::get('/shifts', 'ShiftController@index');
+Route::get('/shifts/{shift}', 'ShiftController@show');
+Route::get('/shift/new', 'ShiftController@create');
+Route::get('/shifts/{shift}/edit', 'ShiftController@edit');
+Route::post('/shifts', 'ShiftController@store');
+Route::patch('/shifts/{shift}', 'ShiftController@update');
+Route::delete('/shifts/{shift}', 'ShiftController@delete');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

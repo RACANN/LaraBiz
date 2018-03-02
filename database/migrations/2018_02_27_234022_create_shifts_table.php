@@ -17,8 +17,10 @@ class CreateShiftsTable extends Migration
             $table->increments('id');
             $table->integer('employee_id');
             $table->dateTime('shift_start');
-            $table->dateTime('shift_end');
-            $table->boolean('open')->default('true');
+            $table->dateTime('shift_end')->nullable();
+            $table->dateTime('break_start')->nullable();
+            $table->dateTime('break_end')->nullable();
+            $table->boolean('open')->default(true);
             $table->timestamps();
         });
     }
