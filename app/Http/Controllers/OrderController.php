@@ -14,7 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+
+        return view('orders.index', 'orders');
     }
 
     /**
@@ -24,7 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return ('orders.create');
     }
 
     /**
@@ -35,7 +37,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->double('cost');
             $table->double('price');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->timestamps();
         });
     }

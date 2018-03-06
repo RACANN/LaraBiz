@@ -19,6 +19,7 @@ class CreateMerchantSessionsTable extends Migration
             $table->dateTime('merchant_session_end');
             $table->double('cash_start');
             $table->double('cash_end');
+            $table->boolean('open');
             $table->timestamps();
         });
     }

@@ -14,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('products.index', 'products');
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -35,7 +37,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+           'description' => 'required',
+           'cost' => 'required',
+           'price' => 'required',
+           'quantity' => 'required'
+        ]);
+
+        $product = new Product;
+        $product->upc  = request('upc');
+        $product->description = request('description');
+        $product->cost = request('cost');
+        $product->price = request('price');
+        $product->quantity = request('quantity');
+
+        $product->save();
+
     }
 
     /**
@@ -46,7 +63,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', 'product');
     }
 
     /**
@@ -57,7 +74,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', 'product');
     }
 
     /**
@@ -69,7 +86,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->validate(request(), [
+            'description' => 'required',
+            'cost' => 'required',
+            'price' => 'required',
+            'quantity' => 'required'
+        ]);
+        $product->upc  = request('upc');
+        $product->description = request('description');
+        $product->cost = request('cost');
+        $product->price = request('price');
+        $product->quantity = request('quantity');
+
+        $product->save();
     }
 
     /**
@@ -80,6 +109,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
     }
 }

@@ -14,7 +14,8 @@ class MerchantSessionController extends Controller
      */
     public function index()
     {
-        //
+        $merchant_sessions = MerchantSession::all();
+        return view('merchant_sessions.index', 'merchant_sessions');
     }
 
     /**
@@ -24,7 +25,7 @@ class MerchantSessionController extends Controller
      */
     public function create()
     {
-        //
+        return view('merchant_sessions.create');
     }
 
     /**
@@ -35,7 +36,9 @@ class MerchantSessionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+
+        ]);
     }
 
     /**

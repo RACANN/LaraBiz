@@ -6,7 +6,7 @@
         <div class="field">
             <label class="label">Employee Number</label>
             <div class="control">
-                <input class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" name="employee_number" maxlength="4" required>
+                <input @click="showClockIn" class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" name="employee_number" maxlength="4" required>
             </div>
             <br />
             <div class="control has-text-centered">
