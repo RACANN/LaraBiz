@@ -991,6 +991,7 @@ Vue.component('example-component', __webpack_require__(38));
 
 var app = new Vue({
   el: '#app'
+
 });
 
 /***/ }),
@@ -43004,9 +43005,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0ca92eac", Component.options)
+    hotAPI.createRecord("data-v-389ef94c", Component.options)
   } else {
-    hotAPI.reload("data-v-0ca92eac", Component.options)
+    hotAPI.reload("data-v-389ef94c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43173,9 +43174,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "row justify-content-center" }, [
         _c("div", { staticClass: "col-md-8" }, [
           _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
+            _c("div", { staticClass: "card-header" }, [_vm._v("Time Clock")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _vm._v(
@@ -43193,7 +43192,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0ca92eac", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-389ef94c", module.exports)
   }
 }
 

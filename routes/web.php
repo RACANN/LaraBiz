@@ -32,7 +32,15 @@ Route::get('/shift/new', 'ShiftController@create');
 Route::get('/shifts/{shift}/edit', 'ShiftController@edit');
 Route::post('/shifts', 'ShiftController@store');
 Route::patch('/shifts/{shift}', 'ShiftController@update');
-Route::delete('/shifts/{shift}', 'ShiftController@delete');
+Route::delete('/shifts/{shift}', 'ShiftController@destroy');
+
+Route::get('/products', 'ProductController@index');
+Route::get('/products/{product}', 'ProductController@show');
+Route::get('/product/new', 'ProductController@create');
+Route::get('/products/{product}/edit', 'ProductController@edit');
+Route::post('/products', 'ProductController@store');
+Route::patch('products/{product}', 'ProductController@update');
+Route::delete('/products/{product}', 'ProductController@destroy');
 
 Auth::routes();
 

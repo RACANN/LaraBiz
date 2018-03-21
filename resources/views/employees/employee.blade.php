@@ -29,7 +29,8 @@
             <form id="deleteForm" action="{{ url('employees/'.$employee->id) }}" method="POST">
             {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <a><i class="fa fa-trash" onclick="confirmDelete(document.getElementById('deleteForm'))"></i></a>
+                {{--<a><i class="fa fa-trash" onclick="confirmDelete(document.getElementById('deleteForm'))"></i></a>--}}
+                <button  onclick="confirmDelete()" type="submit">Delete</button>
         </form>
 
       </span>

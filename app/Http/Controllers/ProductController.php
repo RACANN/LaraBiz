@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('products.index', 'products');
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -40,8 +40,7 @@ class ProductController extends Controller
         $this->validate(request(), [
            'description' => 'required',
            'cost' => 'required',
-           'price' => 'required',
-           'quantity' => 'required'
+           'price' => 'required'
         ]);
 
         $product = new Product;
@@ -49,7 +48,7 @@ class ProductController extends Controller
         $product->description = request('description');
         $product->cost = request('cost');
         $product->price = request('price');
-        $product->quantity = request('quantity');
+        //$product->quantity = request('quantity');
 
         $product->save();
 

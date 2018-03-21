@@ -1,11 +1,17 @@
-<div class="box">
+<div class="box is-success">
     <article class="media">
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-                    <br>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                    <strong>{{$shift->employee->first_name." ".$shift->employee->last_name}}</strong>
+                    @if($shift->open == true)
+
+                        <strong>Status: Open</strong>
+                    @else
+
+                        <strong>Status: Closed</strong>
+
+                    @endif
                 </p>
             </div>
             <nav class="level is-mobile">

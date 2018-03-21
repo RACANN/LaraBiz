@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Employee;
 use App\Shift;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ShiftController extends Controller
 {
@@ -44,7 +45,9 @@ class ShiftController extends Controller
 
         $shift->employee_id = $employee->id;
 
-        $shift->shift_start = request('shift_start');
+        $shift->shift_start = Carbon::now();
+
+        $shift->open = true;
 
         $shift->save();
 
