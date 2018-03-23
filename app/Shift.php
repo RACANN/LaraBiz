@@ -10,4 +10,15 @@ class Shift extends Model
     {
     	return $this->belongsTo(Employee::class);
     }
+    public function getShiftLength()
+    {
+        $grossShiftTime = ($this->shift_end - $this->shift_start);
+        $totalBreaks = 0;
+        if($this->break_start != null){
+            $totalBreaks = ($this->break_end - $this->break_start);
+        }
+
+        return $grossShiftTime - $totalBreaks;
+
+    }
 }

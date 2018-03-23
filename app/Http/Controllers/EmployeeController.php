@@ -60,6 +60,7 @@ class EmployeeController extends Controller
         $employee->birth_date = request('birth_date');
         $employee->hire_date = request('hire_date');
         $employee->pay = request('pay');
+        $employee->position = request('position');
 
         $employee->save();
 

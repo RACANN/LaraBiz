@@ -48,6 +48,7 @@ class ProductController extends Controller
         $product->description = request('description');
         $product->cost = request('cost');
         $product->price = request('price');
+
         //$product->quantity = request('quantity');
 
         $product->save();

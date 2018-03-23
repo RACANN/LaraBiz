@@ -58,6 +58,12 @@
       <input class="input" type="text" name="pay" required>
     </div>
   </div>
+  <div class="field">
+    <label class="label">Position</label>
+    <div class="control">
+      <input class="input" type="text" name="position" required>
+    </div>
+  </div>
 <div class="field is-grouped">
   <div class="control">
     <button class="button is-link" type="submit">Add New Employee</button>
