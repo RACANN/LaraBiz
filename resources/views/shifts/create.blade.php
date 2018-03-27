@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.minimal')
 @section('content')
 
     <form method="POST" action="/shifts">

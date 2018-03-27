@@ -33,6 +33,8 @@
 
       </div><!-- /.row -->
 
+      <br />
+
       @include('layouts.footer')
       @yield('footer')
 

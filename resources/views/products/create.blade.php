@@ -1,40 +1,40 @@
 @extends('layouts.master')
 @section('content')
-<h1>New Products</h1>
+<h1 class="subtitle">New Product</h1>
 <form method="POST" action="/products">
   {{ csrf_field() }}
 <div class="field">
-  <label class="label is-danger">UPC</label>
+  <label>UPC</label>
   <div class="control">
     <input class="input" type="text"  name="upc">
   </div>
 </div>
 
   <div class="field">
-    <label class="label is-danger">Name</label>
+    <label>Name</label>
     <div class="control">
       <input class="input" type="text" name="name" required>
     </div>
   </div>
 
   <div class="field">
-    <label class="label is-danger">Description</label>
+    <label>Description</label>
     <div class="control">
       <input class="input" type="text"  name="description" required>
     </div>
   </div>
 
   <div class="field">
-    <label class="label is-danger">Cost!</label>
+    <label>Cost</label>
     <div class="control">
       <input class="input" type="text" name="cost" required>
     </div>
   </div>
 
 <div class="field">
-    <label class="label is-danger">Price</label>
+    <label>Price</label>
     <div class="control">
-      <input class="input" type="text" name="price">
+      <input class="input" type="text" name="price" required>
     </div>
   </div>
 <div class="field is-grouped">
@@ -42,7 +42,7 @@
     <button class="button is-link" type="submit">Add Item</button>
   </div>
   <div class="control">
-    <button class="button is-text">Cancel</button>
+    <a href="/products" class="button is-link">Cancel</a>
   </div>
 </div>
 </form>
