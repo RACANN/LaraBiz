@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,8 +13,15 @@
 */
 
 Route::get('/', function () {
+
     return view('EmployeePage');
+
 });
+
+Route::get('/manager', function (){
+    return view('ManagerPage');
+});
+
 
 
 

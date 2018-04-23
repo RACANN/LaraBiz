@@ -1,6 +1,7 @@
 @extends('layouts.minimal')
 @section('content')
     <br />
+
     <div class="tile is-ancestor">
         <div class="tile is-vertical is-8">
             <div class="tile">
@@ -10,9 +11,9 @@
                         <ul class="menu-list m-1">
                             <br />
                             <li><a href="/order/new" class="button">Place An Order</a></li>
-                            <li><a href="/orders" class="button">View Past Orders</a></li>
-                            <li><a href="/orders" class="button">Check In Item(s)</a></li>
-                            <li><a href="/orders" class="button">Sales, Deals, Info</a></li>
+                            <li><a href="/orders" class="button">View Orders</a></li>
+                            <li><a href="/products" class="button">Check In Item(s)</a></li>
+                            <li><a href="#" class="button">Sales, Deals, Info</a></li>
                             <br />
                         </ul>
                     </article>
@@ -26,9 +27,9 @@
                         <h1 class="title">System</h1>
                         <ul class="menu-list m-1">
                             <br />
-                            <li><a href="/order/new" class="button">Clock In/Out</a></li>
-                            <li><a href="/orders" class="button">Active Employees/Sales</a></li>
-                            <li><a href="/orders" class="button">View Schedule</a></li>
+                            <li><a href="/shift/new" class="button">Clock In/Out</a></li>
+                            <li><a href="/shifts" class="button">Active Employees</a></li>
+                            <li><a href="#" class="button">View Schedule</a></li>
                             <li><a href="/orders" class="button">Other</a></li>
                             <br />
                         </ul>
@@ -50,10 +51,10 @@
                 <h1 class="title">Manager</h1>
                 <ul class="menu-list m-1">
                     <br />
-                    <li><a href="/order/new" class="button">Manage Employees</a></li>
-                    <li><a href="/orders" class="button">Manage Shifts</a></li>
-                    <li><a href="/orders" class="button">Manage Schedule</a></li>
-                    <li><a href="/orders" class="button">Manager Dashboard</a></li>
+                    <li><a href="/employees" class="button">Manage Employees</a></li>
+                    <li><a href="/shifts" class="button">Manage Shifts</a></li>
+                    <li><a href="#" class="button">Manage Schedule</a></li>
+                    <li><a href="/manager" class="button">Manager Dashboard</a></li>
                     <br />
                 </ul>
             </article>

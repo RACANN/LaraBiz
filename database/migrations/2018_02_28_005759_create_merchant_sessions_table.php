@@ -15,11 +15,12 @@ class CreateMerchantSessionsTable extends Migration
     {
         Schema::create('merchant_sessions', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('name')->nullable();
             $table->dateTime('merchant_session_start');
-            $table->dateTime('merchant_session_end');
+            $table->dateTime('merchant_session_end')->nullable();
             $table->double('cash_start');
             $table->double('cash_end');
-            $table->boolean('open');
+            $table->boolean('open')->default(true);
             $table->timestamps();
         });
     }

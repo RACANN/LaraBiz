@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\MerchantSession;
+use App\PaySchedule;
 use Illuminate\Http\Request;
 
-class MerchantSessionController extends Controller
+class PayScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class MerchantSessionController extends Controller
      */
     public function index()
     {
-        $merchant_sessions = MerchantSession::all();
-        return view('merchant_sessions.index', 'merchant_sessions');
+        $paySchedules = PaySchedule::all();
+
+        return view('payschedules.index', compact('paySchedules'));
     }
 
     /**
@@ -25,7 +26,7 @@ class MerchantSessionController extends Controller
      */
     public function create()
     {
-        return view('merchant_sessions.create');
+        return view('payschedules.create');
     }
 
     /**
@@ -36,29 +37,18 @@ class MerchantSessionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'cash_start' => 'required'
-        ]);
-        $merchantsession = New MerchantSession;
-
-        $merchantsession->cash_start = request('cash_start');
-
-        $merchantsession->cash_end = request('cash_start'); //Use cash start as initial value. This will change as updated.
-
-        $merchantsession->save();
-
-        return redirect('/merchantsessions');
-
-
+        $this->validate(request([
+            ''
+        ]));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\MerchantSession  $merchantSession
+     * @param  \App\PaySchedule  $paySchedule
      * @return \Illuminate\Http\Response
      */
-    public function show(MerchantSession $merchantSession)
+    public function show(PaySchedule $paySchedule)
     {
         //
     }
@@ -66,10 +56,10 @@ class MerchantSessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MerchantSession  $merchantSession
+     * @param  \App\PaySchedule  $paySchedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(MerchantSession $merchantSession)
+    public function edit(PaySchedule $paySchedule)
     {
         //
     }
@@ -78,10 +68,10 @@ class MerchantSessionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MerchantSession  $merchantSession
+     * @param  \App\PaySchedule  $paySchedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MerchantSession $merchantSession)
+    public function update(Request $request, PaySchedule $paySchedule)
     {
         //
     }
@@ -89,10 +79,10 @@ class MerchantSessionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MerchantSession  $merchantSession
+     * @param  \App\PaySchedule  $paySchedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MerchantSession $merchantSession)
+    public function destroy(PaySchedule $paySchedule)
     {
         //
     }
