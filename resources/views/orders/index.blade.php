@@ -4,7 +4,7 @@
 
     <nav class="panel">
         <p class="panel-heading">
-            Employees
+            Orders
         </p>
         <div class="panel-block">
             <p class="control has-icons-left">
@@ -21,16 +21,16 @@
             <a class="is-primary is-outlined"><span class="icon is-small is-left">
         <i class="fa fa-sort"></i>
       </span></a>
-            <a class="is-primary is-outlined" href="/merchantsession/new"><span class="icon is-small is-left">
+            <a class="is-primary is-outlined" href="/order/new"><span class="icon is-small is-left">
         <i class="fa fa-plus"></i>
       </span></a>
             <a class="is-primary is-outlined"><span class="icon is-small is-left">
         <i class="fa fa-dollar"></i>
       </span></a>
         </p>
-        @foreach($merchantsessions as $merchantsession)
+        @foreach($orders as $order)
 
-            @include('merchantsession.merchantsession')
+            @include('orders.order')
 
         @endforeach
     </nav>

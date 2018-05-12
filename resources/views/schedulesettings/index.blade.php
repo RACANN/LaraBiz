@@ -21,16 +21,16 @@
             <a class="is-primary is-outlined"><span class="icon is-small is-left">
         <i class="fa fa-sort"></i>
       </span></a>
-            <a class="is-primary is-outlined" href="/merchantsession/new"><span class="icon is-small is-left">
+            <a class="is-primary is-outlined" href="/schedulesetting/new"><span class="icon is-small is-left">
         <i class="fa fa-plus"></i>
       </span></a>
             <a class="is-primary is-outlined"><span class="icon is-small is-left">
         <i class="fa fa-dollar"></i>
       </span></a>
         </p>
-        @foreach($merchantsessions as $merchantsession)
+        @foreach($schedulesettings as $schedulesetting)
 
-            @include('merchantsession.merchantsession')
+            @include('schedulesettings.schedulesetting')
 
         @endforeach
     </nav>

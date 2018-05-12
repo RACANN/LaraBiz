@@ -8,7 +8,7 @@
     <a  class="navbar-item" href="/shifts">Shifts</a>
     <a  class="navbar-item" href="#">Orders</a>
     <a  class="navbar-item" href="/products">Inventory</a>
-    <a  class="navbar-item" href="/schedules">Inventory</a>
+    <a  class="navbar-item" href="/schedules">Schedules</a>
 
     <div class="navbar-burger">
       <span></span>
