@@ -16,8 +16,6 @@ class CreatePaySchedulesTable extends Migration
         Schema::create('pay_schedules', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('schedule_setting_id');
-            $table->dateTime('start');
-            $table->dateTime('end');
             $table->timestamps();
         });
     }
