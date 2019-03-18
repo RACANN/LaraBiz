@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <title>Mercury</title>
+    <title>Employee</title>
   </head>
   <body>
+  <div id="app">
   <section class="section">
     <div class="container">
       <h1 class="title">
-        Mercury
+        Employee
       </h1>
       <p class="subtitle">
         Business Management System
@@ -38,8 +39,12 @@
       @include('layouts.footer')
       @yield('footer')
 
+      
+
     </main><!-- /.container -->
 
-
+    
+    </div>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
   </body>
 </html>

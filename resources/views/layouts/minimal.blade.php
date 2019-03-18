@@ -4,17 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <title>Mercury</title>
+    <title>Employee Management System</title>
 </head>
 <body>
 <section class="section">
     <div class="container">
         <h1 class="title">
-            Mercury
+            Employee Managements System
         </h1>
-        <p class="subtitle">
-            Business Management System
-        </p>
     </div>
 </section>
 

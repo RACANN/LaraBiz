@@ -19,5 +19,21 @@ Vue.component('example-component', require('./components/TimeClock.vue'));
 
 const app = new Vue({
     el: '#app',
+    data: {
+        message: 'Vue Loaded',
+        isActive : false
+      },
+      methods:{
+        close(){
+            document.getElementById("createEmployeeForm").classList.remove("is-active");
+        },
+        openAdd(){
+            document.getElementById("createEmployeeForm").classList.add("is-active");
+        },
+        save(){
+            axios.post('/employees',this.$data.list).then((response)=> this.close())
+              .catch((error) => console.log(error))
+        }
+    }
 
 });
