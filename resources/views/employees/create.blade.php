@@ -1,8 +1,6 @@
 @extends('layouts.master')
 @section('content')
 
-
-@{{ message }}
 <form method="POST" action="/employees">
   {{ csrf_field() }}
   <div class="field">
@@ -75,36 +73,5 @@
   </div>
 </div>
 </form>
-
-
-
-
 @endsection
 
-<!-- @section('customfooter')
-
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script>
-//    function confirmDelete(form) {
-//        if (confirm('Are you sure you want to delete this record? This action cannot be undone.')) {
-//            form.submit();
-//        } else {
-//            // Do nothing!
-//        }
-//    }
-  function confirmDelete(){
-      alert('Yo');
-  }
-
-</script>
-<script>
-var app = new Vue({
-  el: '#empform',
-  data: {
-    message: 'Hello Vue!'
-  }
-});
-
-alert("JS Working!");
-</script>
-@endsection -->

@@ -18,6 +18,17 @@ class EmployeeController extends Controller
         return view('employees.index', compact('employees'));
     }
 
+    public function indexAsync()
+    {
+        $employees = Employee::all();
+        return response()->json(compact('employees'));
+    }
+    public function getEmployeesAsync()
+    {
+        $employees = Employee::all();
+        return $employees;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

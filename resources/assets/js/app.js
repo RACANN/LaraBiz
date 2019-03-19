@@ -20,8 +20,14 @@ Vue.component('example-component', require('./components/TimeClock.vue'));
 const app = new Vue({
     el: '#app',
     data: {
-        message: 'Vue Loaded',
+        employees: [],
         isActive : false
+      },
+      mounted(){
+        // axios.get('/employees').then(response => this.employees = response.data)
+        this.getEmployeesAsync();
+        console.log(this.employees);
+        //console.log(this.employees)
       },
       methods:{
         close(){
@@ -30,10 +36,18 @@ const app = new Vue({
         openAdd(){
             document.getElementById("createEmployeeForm").classList.add("is-active");
         },
-        save(){
-            axios.post('/employees',this.$data.list).then((response)=> this.close())
-              .catch((error) => console.log(error))
+        saveEmployee(){
+           
+        },
+
+        getEmployeesAsync(){
+            axios.get('/employees-async').then(response => this.employees = response.data);
         }
+        
     }
 
+});
+
+     $(document).ready( function () {
+    $('#employeeIndexTable').DataTable();
 });

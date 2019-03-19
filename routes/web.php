@@ -24,6 +24,9 @@ Route::get('/manager', function (){
 
 
 
+Route::post('/get-employees-async', "EmployeeController@indexAsync")->name('get-eemployees-async');
+
+Route::get('/employees-async', "EmployeeController@getEmployeesAsync")->name('employees-async');
 
 Route::get('/employees', 'EmployeeController@index')->name('employees.all');
 Route::get('/employees/{employee}', 'EmployeeController@show')->name('employees.show');

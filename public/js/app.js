@@ -992,9 +992,16 @@ Vue.component('example-component', __webpack_require__(39));
 var app = new Vue({
     el: '#app',
     data: {
-        message: 'Vue Loaded',
+        employees: [],
         isActive: false
     },
+    mounted: function mounted() {
+        // axios.get('/employees').then(response => this.employees = response.data)
+        this.getEmployeesAsync();
+        console.log(this.employees);
+        //console.log(this.employees)
+    },
+
     methods: {
         close: function close() {
             document.getElementById("createEmployeeForm").classList.remove("is-active");
@@ -1002,17 +1009,20 @@ var app = new Vue({
         openAdd: function openAdd() {
             document.getElementById("createEmployeeForm").classList.add("is-active");
         },
-        save: function save() {
+        saveEmployee: function saveEmployee() {},
+        getEmployeesAsync: function getEmployeesAsync() {
             var _this = this;
 
-            axios.post('/employees', this.$data.list).then(function (response) {
-                return _this.close();
-            }).catch(function (error) {
-                return console.log(error);
+            axios.get('/employees-async').then(function (response) {
+                return _this.employees = response.data;
             });
         }
     }
 
+});
+
+$(document).ready(function () {
+    $('#employeeIndexTable').DataTable();
 });
 
 /***/ }),

@@ -71,7 +71,7 @@
     <button class="button is-link" type="submit">Add New Employee</button>
   </div>
   <div class="control">
-    <a href="/employees" class="button is-link">Cancel</a>
+    <div class="button is-link" @click="close">Cancel</div>
   </div>
 </div>
 </form>
@@ -105,10 +105,38 @@
         <i class="fa fa-dollar"></i>
       </span></a>
   </p>
-@foreach($employees as $employee)
+<!-- @foreach($employees as $employee)
     
     	@include('employees.employee')
    
-@endforeach  
+@endforeach   -->
+
+<!-- <ul>
+<li v-for="number in numbers">
+@{{number}}
+</li>
+</ul> -->
 </nav>
+<table id="employeeIndexTable">
+        
+        <tr>
+            <td>Employee Id</td>
+            <td>Employee Number</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Employee Email</td>
+            <td>Phone Number</td>
+        </tr>
+    
+    
+    <tr v-for="employee in employees">
+      <td>@{{employee.id}}</td>
+      <td>@{{employee.employee_number}}</td>
+      <td>@{{employee.first_name}}</td>
+      <td>@{{employee.last_name}}</td>
+      <td>@{{employee.email}}</td>
+      <td>@{{employee.phone}}</td>
+</tr>
+
+</table>
 @endsection
