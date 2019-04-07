@@ -23,11 +23,7 @@ class EmployeeController extends Controller
         $employees = Employee::all();
         return response()->json(compact('employees'));
     }
-    public function getEmployeesAsync()
-    {
-        $employees = Employee::all();
-        return $employees;
-    }
+    
 
     /**
      * Show the form for creating a new resource.

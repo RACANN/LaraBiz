@@ -7,6 +7,9 @@
 
 require('./bootstrap');
 
+import Vuetify from 'vuetify';
+
+
 window.Vue = require('vue');
 
 /**
@@ -26,7 +29,6 @@ const app = new Vue({
       mounted(){
         // axios.get('/employees').then(response => this.employees = response.data)
         this.getEmployeesAsync();
-        console.log(this.employees);
         //console.log(this.employees)
       },
       methods:{
@@ -48,6 +50,3 @@ const app = new Vue({
 
 });
 
-     $(document).ready( function () {
-    $('#employeeIndexTable').DataTable();
-});

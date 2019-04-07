@@ -117,7 +117,7 @@
 </li>
 </ul> -->
 </nav>
-<table id="employeeIndexTable">
+<table  class = "table table condensed"id="employeeIndexTable">
         
         <tr>
             <td>Employee Id</td>

@@ -18,6 +18,15 @@ Route::get('/', function () {
 
 });
 
+Route::get('/reports', function(){
+    return view('reports');
+});
+
+Route::get('/search/', function(){
+    $employees = \App\Employee::all();
+    return $employees;
+});
+
 Route::get('/manager', function (){
     return view('ManagerPage');
 });
@@ -26,7 +35,7 @@ Route::get('/manager', function (){
 
 Route::post('/get-employees-async', "EmployeeController@indexAsync")->name('get-eemployees-async');
 
-Route::get('/employees-async', "EmployeeController@getEmployeesAsync")->name('employees-async');
+Route::get('/employees-async', "EmployeeController@indexAsync")->name('employees-async');
 
 Route::get('/employees', 'EmployeeController@index')->name('employees.all');
 Route::get('/employees/{employee}', 'EmployeeController@show')->name('employees.show');
