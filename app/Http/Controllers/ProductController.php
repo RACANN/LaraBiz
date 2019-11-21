@@ -78,7 +78,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', 'product');
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -94,15 +94,17 @@ class ProductController extends Controller
             'description' => 'required',
             'cost' => 'required',
             'price' => 'required',
-            'quantity' => 'required'
         ]);
         $product->upc  = request('upc');
         $product->description = request('description');
         $product->cost = request('cost');
         $product->price = request('price');
-        $product->quantity = request('quantity');
 
         $product->save();
+
+        return redirect('/products');
+
+
     }
 
     /**

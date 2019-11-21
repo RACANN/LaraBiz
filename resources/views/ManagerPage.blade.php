@@ -6,33 +6,8 @@
             <div class="tile">
                 <div class="tile is-parent is-vertical">
                     <article class="tile is-child notification is-primary">
-                            <h1 class="title">Employees and Schedule</h1>
-                            <div class="columns">
-                                <div class="column is-half">
-                                    <i class="fa fa-users fa-4x is-boxed"></i>
-                                    <p>All Employees</p>
-                                </div>
-                                <div class="column is-half">
-                                    <i class="fa fa-user-plus fa-4x is-boxed"></i>
-                                    <p>Add Employee</p>
-                                </div>
+                            <h1 class="title">Employees</h1>
 
-                            </div>
-                        {{--<div class="columns">--}}
-                            {{--<div class="column is-one-third">--}}
-                                {{--<i class="fa fa-users fa-4x is-boxed"></i>--}}
-                                {{--<p>All Employees</p>--}}
-                            {{--</div>--}}
-                            {{--<div class="column is-one-third">--}}
-                                {{--<i class="fa fa-user-plus fa-4x is-boxed"></i>--}}
-                                {{--<p>Add Employee</p>--}}
-                            {{--</div>--}}
-                            {{--<div class="column is-one-third">--}}
-                                {{--<i class="fa fa-user-plus fa-4x is-boxed"></i>--}}
-                                {{--<p>Add Employee</p>--}}
-                            {{--</div>--}}
-
-                        {{--</div>--}}
 
 
                     </article>
@@ -44,11 +19,7 @@
                 <div class="tile is-parent">
                     <article class="tile is-child notification is-info">
                         <h1 class="title">Inventory</h1>
-                        <div class="is-grouped">
-                            <i class="fa fa-check-square-o fa-4x"></i>
-                            <i class="fa fa-check-square-o fa-4x"></i>
-                            <i class="fa fa-check-square-o fa-4x"></i>
-                        </div>
+
                     </article>
                 </div>
             </div>
@@ -64,8 +35,8 @@
         </div>
         <div class="tile is-parent">
             <article class="tile is-child notification is-success">
-                <h1 class="title">Sales and Payroll</h1>
-                <i class="fa fa-usd fa-4x"></i>
+                <h1 class="title">Sales</h1>
+
             </article>
         </div>
     </div>

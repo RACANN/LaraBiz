@@ -1,11 +1,13 @@
 @extends('layouts.master')
 @section('content')
-
+    @include('products.modals.add_product_modal')
+    <h1 class="title">Products</h1>
     <div class="navbar-menu">
         <div class="navbar-end">
-            <div class="button is-success">Add New</div>
+            <div class="button is-success" id="btn_add_new">Add New</div>
         </div>
     </div>
+
     <hr>
 
     <table id="products" class="display">
@@ -16,19 +18,25 @@
             <th>Description</th>
             <th>Cost</th>
             <th>Price</th>
+            <th>Profit</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         @foreach($products as $product)
+                <?php
+                $profit = ($product->price - $product->cost);
+                $profit > 0 ? $color = '#33b322' : ($profit < 0 ? $color='#ff0000': $color = '#000000');
+                ?>
 
             <tr>
-                <td>{{$product->upc}}</td>
+                <td><a href="/products/{{$product->id}}/edit">{{$product->upc}}</a></td>
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
-                <td>{{$product->cost}}</td>
-                <td>{{$product->price}}</td>
-                <td>Edit | Delete</td>
+                <td>{{number_format($product->cost, 2)}}</td>
+                <td>{{number_format($product->price, 2)}}</td>
+                <td><?php echo "<span style='color:".$color."'>";?>{{ number_format($profit, 2)}}<?php echo "</span>" ?></td>
+                <td><i style="color:#9db2e0" class="fa fa-trash fa-lg"></i></td>
 
             </tr>
 
@@ -43,8 +51,18 @@
 
             $('#products').DataTable({
                 "columnDefs": [
-                    { "orderable": false, "targets": 5 }
+                    { "orderable": false, "targets": 6 }
                 ]
+            });
+
+            $('#btn_add_new').on("click", function(){
+                $('#add_new_modal').addClass('is-active').fadeIn();
+            });
+            $('#btn_cancel_add_new').on("click", function(){
+                $('#add_new_modal').removeClass('is-active')
+            });
+            $('#close_add_new').on("click", function(){
+                $('#add_new_modal').removeClass('is-active')
             });
 
         });
