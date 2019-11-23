@@ -30,7 +30,7 @@
       <td>{{$employee->last_name}}</td>
       <td>{{$employee->email}}</td>
       <td>{{$employee->phone}}</td>
-      <td><td><i style="color:#9db2e0" class="fa fa-trash fa-lg"></i></td></td>
+      <td><i style="color:#9db2e0" class="fa fa-trash fa-lg" data-first-name ="{{$employee->first_name}}" data-last-name ="{{$employee->last_name}}" data-id="{{$employee->id}}"></i></td>
     </tr>
 
   @endforeach
@@ -43,7 +43,7 @@
 @section('custom-js')
   <script>
       $(document).ready( function () {
-          $('#employees').DataTable();
+          var employee_table = $('#employees').DataTable();
           $('#btn_add_new').on("click", function(){
             $('#add_new_modal').addClass('is-active').fadeIn();
           });
@@ -52,6 +52,26 @@
           });
           $('#close_add_new').on("click", function(){
               $('#add_new_modal').removeClass('is-active')
+          });
+          $('.fa-trash').on('click', function(e){
+              e.preventDefault();
+              var id = $(this).data('id');
+              var firstName = $(this).data('first-name');
+              var lastName= $(this).data('last-name');
+
+             console.log($(this).data('id'));
+            if(confirm("Are you sure you want to delete "+firstName + " " + lastName + "?")){
+                $.ajax({
+                    url: '/employees/'+id,
+                    method: 'DELETE',
+                    data: {
+                        "_token" : "{{csrf_token()}}"
+                    }
+                });
+                location.reload();
+            }
+
+
           });
       } );
   </script>
