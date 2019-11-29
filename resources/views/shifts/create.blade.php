@@ -1,6 +1,12 @@
 @extends('layouts.master')
 @section('content')
 
+    @if (session('exists'))
+        <div class="notification is-danger">
+            {{ session('exists') }}
+        </div>
+    @endif
+
     <form method="POST" action="/shifts">
         {{ csrf_field() }}
         <div class="field">

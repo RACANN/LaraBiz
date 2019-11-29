@@ -36,7 +36,7 @@
                 <td>{{number_format($product->cost, 2)}}</td>
                 <td>{{number_format($product->price, 2)}}</td>
                 <td><?php echo "<span style='color:".$color."'>";?>{{ number_format($profit, 2)}}<?php echo "</span>" ?></td>
-                <td><i style="color:#9db2e0" class="fa fa-trash fa-lg"></i></td>
+                <td><i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$product->id}}" data-product-name="{{$product->name}}"></i></td>
 
             </tr>
 
@@ -64,6 +64,22 @@
             $('#close_add_new').on("click", function(){
                 $('#add_new_modal').removeClass('is-active')
             });
+
+            $(".fa-trash").on("click", function(){
+                var id = $(this).data('id');
+                var productName = $(this).data('product-name');
+
+                if(confirm("Are you sure you want to delete "+ productName + "?")==true){
+                    $.ajax({
+                        url: "/products/"+id,
+                        method: "DELETE",
+                        data: {
+                            "_token" : "{{csrf_token()}}"
+                        }
+                    });
+                    location.reload();
+                }
+            })
 
         });
     </script>
