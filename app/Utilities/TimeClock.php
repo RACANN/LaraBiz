@@ -4,8 +4,8 @@ use App\Shift;
 
 class TimeClock
 {
-    public function checkForOpenShifts($id)
+    public static function clockIn()
     {
-         return Shift::all()->where('is_open', '=', 'true')->count() == 0 ? flase : true;
+
     }
 }

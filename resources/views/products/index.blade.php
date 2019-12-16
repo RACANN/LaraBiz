@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     @include('products.modals.add_product_modal')
-    <h1 class="title">Products</h1>
+    <h1 class="title">@section('title', 'Products')</h1>
     <div class="navbar-menu">
         <div class="navbar-end">
             <div class="button is-success" id="btn_add_new">Add New</div>

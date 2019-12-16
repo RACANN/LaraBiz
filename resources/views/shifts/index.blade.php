@@ -78,7 +78,8 @@
                         url: '/shifts/'+id,
                         method: 'DELETE',
                         data: {
-                            "_token" : "{{csrf_token()}}"
+                            "_token" : "{{csrf_token()}}",
+                            "origin" : "manager"
                         }
                     });
                     location.reload();

@@ -56,4 +56,17 @@ class Shift extends Model
 
         }
     }
+    public function checkAndSave($employee_id)
+    {
+        if(Shift::checkForOpenShifts($employee_id)==false){
+            $shift = new Shift;
+            $shift->employee_id = $employee_id;
+            $shift->shift_start = Carbon::now();
+            $shift->open = true;
+            $shift->save();
+            return redirect('/shifts')->with('shift_added', "Shift added for ".$this->employee->first_name." ".$this->employee->last_name.'.');
+        }else{
+            return redirect('/shifts')->with('employee_exists', $this->employee->first_name." ".$this->last_name.' already has open shifts');
+        }
+    }
 }

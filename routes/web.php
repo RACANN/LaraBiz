@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,3 +68,11 @@ Route::delete('/products/{product}', 'ProductController@destroy')->name('product
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//TimeClock Routes
+Route::get('/timeclock', function() {
+    return view('timeclock');
+});
+
+Route::get('/timeclock/check/{id}', 'TimeClockController@Check');

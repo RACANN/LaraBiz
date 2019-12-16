@@ -8,6 +8,7 @@
         <section class="modal-card-body">
             <form method="POST" action="/shifts">
                 {{ csrf_field() }}
+                <input type="hidden" name="origin" value="manager">
                 <div class="field">
                     <label class="label">Employee Number</label>
                     <div class="control">

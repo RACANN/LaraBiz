@@ -39,24 +39,31 @@ class ShiftController extends Controller
      */
     public function store(Request $request)
     {
-
         $employee = Employee::where('employee_number', '=', request('employee_number'))->first();
+        $origin = $_POST['origin'];
+        if($origin == "manager"){
+            if(Shift::checkForOpenShifts($employee->id)==false){
+                $shift = new Shift;
+                $shift->employee_id = $employee->id;
+                $shift->shift_start = Carbon::now();
+                $shift->open = true;
+                $shift->save();
+                return redirect('/shifts')->with('shift_added', "Shift added for ".$employee->first_name." ".$employee->last_name.'.');
+            }else{
+                return redirect('/shifts')->with('employee_exists', $employee->first_name." ".$employee->last_name.' already has open shifts');
+            }
+        }elseif ($origin=="timeclock"){
+            if(Shift::checkForOpenShifts($employee->id)==false){
+                $shift = new Shift;
+                $shift->employee_id = $employee->id;
+                $shift->shift_start = Carbon::now();
+                $shift->open = true;
+                $shift->save();
+                return redirect('/timeclock')->with('shift_added', "Shift added for ".$employee->first_name." ".$employee->last_name.'.');
+            }else{
+                return redirect('/timeclock')->with('employee_exists', $employee->first_name." ".$employee->last_name.' already has open shifts');
+            }
 
-        if(Shift::checkForOpenShifts($employee->id)==false)
-        {
-            $shift = new Shift;
-
-            $shift->employee_id = $employee->id;
-
-            $shift->shift_start = Carbon::now();
-
-            $shift->open = true;
-
-            $shift->save();
-            return redirect('/shifts')->with('shift_added', "Shift added for ".$employee->first_name." ".$employee->last_name.'.');
-
-        }else{
-            return redirect('/shifts')->with('employee_exists', $employee->first_name." ".$employee->last_name.' already has open shifts');
         }
     }
 

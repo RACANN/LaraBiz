@@ -28,7 +28,7 @@
         <div class="field">
             <label class="label is-danger">Shift End</label>
             <div class="control">
-                <input class="input" type="datetime-local" name="shift_end"  value="{{$shift->convertToHtmlDateTime($shift->shift_end)}}" required>
+                <input class="input" type="datetime-local" name="shift_end"  value="{{$shift->convertToHtmlDateTime($shift->shift_end)}}">
             </div>
         </div>
 
