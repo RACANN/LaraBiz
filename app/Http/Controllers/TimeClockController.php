@@ -5,19 +5,58 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\Shift;
+use Carbon\Carbon;
 
 
 class TimeClockController extends Controller
 {
-    public function ClockIn($employee_number)
-    {
+    //***********************************************//
+    //ClockIn logic handled by ShiftController@store//
+    //**********************************************//
 
-    }
-    public function ClockOut($employee_number)
-    {
 
+    public function StartBreak()
+    {
+        $employee_number = $_POST['employee_number'];
+        $employee = Employee::where('employee_number', '=', $employee_number)->first();
+
+        $this->checkEmployeeNumber($employee_number);
+
+        $shift = Shift::where('employee_id', '=', $employee->id)->where('open', '=', true)->first();
+        $shift->break_start = $shift->convertToLaravelTimeStamp(Carbon::now());
+        $shift->save();
+        return redirect('/timeclock')->with('status', "Break started for ".$shift->employee->first_name." ".$shift->employee->last_name.'.');
     }
-    public function Check($employee_number){
+
+    public function EndBreak()
+    {
+        $employee_number = $_POST['employee_number'];
+        $employee = Employee::where('employee_number', '=', $employee_number)->first();
+
+        $this->checkEmployeeNumber($employee_number);
+
+        $shift = Shift::where('employee_id', '=', $employee->id)->where('open', '=', true)->first();
+        $shift->break_end = $shift->convertToLaravelTimeStamp(Carbon::now());
+        $shift->save();
+        return redirect('/timeclock')->with('status', "Break ended for ".$shift->employee->first_name." ".$shift->employee->last_name.'.');
+    }
+
+    public function ClockOut()
+    {
+        $employee_number = $_POST['employee_number'];
+        $employee = Employee::where('employee_number', '=', $employee_number)->first();
+
+        $this->checkEmployeeNumber($employee_number);
+
+        $shift = Shift::where('employee_id', '=', $employee->id)->where('open', '=', true)->first();
+        $shift->shift_end = $shift->convertToLaravelTimeStamp(Carbon::now());
+        $shift->open = false;
+        $shift->save();
+        return redirect('/timeclock')->with('status', "Shift ended for ".$shift->employee->first_name." ".$shift->employee->last_name.'.');
+    }
+
+    public function CheckStatus($employee_number){
+
         $response = ['status' => [
             'code' => 0,
             'description' => 'No Status'
@@ -34,7 +73,7 @@ class TimeClockController extends Controller
         $employee = Employee::where('employee_number', '=', $employee_number)->first();
         if(Shift::checkForOpenShifts($employee->id)==false){
             $response['status']['code']=2;
-            $response['status']['description'] = "Employee ready to clock in";
+            $response['status']['description'] = $employee->first_name." ".$employee->last_name." ready to clock in";
              return response()->json($response);
         }
 
@@ -43,19 +82,30 @@ class TimeClockController extends Controller
             $shift = Shift::where('employee_id', '=', $employee->id)->first();
             if(empty($shift->break_start)){
                 $response['status']['code']=3;
-                $response['status']['description'] = 'Employee clocked in with no break';
+                $response['status']['description'] = $employee->first_name." ".$employee->last_name." clocked in with no break";
                 return response()->json($response);
             }else{
                 if(empty($shift->break_end)){
-                    $response['status']['description'] = 'Still on break';
+                    $response['status']['description'] = $employee->first_name." ".$employee->last_name.' Still on break';
                     $response['status']['code'] = 4;
                 }else{
-                    $response['status']['description'] = 'Employee back from break';
+                    $response['status']['description'] =  $employee->first_name." ".$employee->last_name.' back from break';
                     $response['status']['code'] = 5;
                 }
                 return response()->json($response);
             }
         }
+    }
+
+    public function checkEmployeeNumber($employee_number)
+    {
+        if(Employee::all()->where("employee_number", "=", $employee_number)->count() < 1)
+            return redirect('/timeclock')->with('status', 'Employee Not Found');
+
+        $employee = Employee::where('employee_number', '=', $employee_number)->first();
+
+        if(Shift::where('employee_id', '=', $employee->id)->where('open', '=', true)->count() > 1)
+            return redirect('/timeclock')->with('status', 'Employee has multiple shifts open. Please contact manager or admin');
     }
 
 }

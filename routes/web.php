@@ -70,9 +70,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-//TimeClock Routes
+//TimeClock Routes for custom logic
+//Clock in handled by ShiftController
 Route::get('/timeclock', function() {
     return view('timeclock');
 });
 
-Route::get('/timeclock/check/{id}', 'TimeClockController@Check');
+Route::get('/timeclock/check/{id}', 'TimeClockController@CheckStatus');
+Route::post('/timeclock/break/start/', 'TimeClockController@StartBreak');
+Route::post('/timeclock/break/end/', 'TimeClockController@EndBreak');
+Route::post('/timeclock/clockout/', 'TimeClockController@ClockOut');

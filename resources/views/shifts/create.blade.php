@@ -9,6 +9,7 @@
 
     <form method="POST" action="/shifts">
         {{ csrf_field() }}
+        <input type="hidden" id="origin" name="origin" value="manager">
         <div class="field">
             <label class="label">Employee Number</label>
             <div class="control">

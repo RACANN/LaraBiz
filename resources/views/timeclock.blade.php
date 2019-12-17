@@ -7,7 +7,7 @@
                     Employee Time Clock
                 </p>
             </header>
-            <p>@{{status_code}}</p>
+            <p>@{{status_message}}</p>
             <div class="card-content">
                 <div class="content">
                     <input class="input" type="text" placeholder="Enter Employee Number" v-model="employee_number">
@@ -17,10 +17,10 @@
                </div>
             </div>
             <footer class="card-footer" id="timeclockButtons">
-                <div id="clock-in" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableClockIn">Clock In</div>
-                <div id="break-start" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableBreakStart">Break Start</div>
-                <div id="break-end" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableBreakEnd">Break End</div>
-                <div id="clock out" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableClockOut">Clock Out</div>
+                <div id="clock-in" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableClockIn" @click="clockIn">Clock In</div>
+                <div id="break-start" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableBreakStart" @click="startBreak">Break Start</div>
+                <div id="break-end" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableBreakEnd" @click="endBreak">Break End</div>
+                <div id="clock out" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableClockOut" @click="clockOut">Clock Out</div>
             </footer>
         </div>
     </div>
@@ -33,6 +33,7 @@
             data: {
                 employee_number: '',
                 status_code: '',
+                status_message: '',
                 enableClockIn: false,
                 enableBreakStart: false,
                 enableBreakEnd: false,
@@ -45,6 +46,7 @@
                         method: "GET"
                     }).done(data => {
                         this.status_code = data.status.code;
+                        this.status_message = data.status.description;
                         this.toggleButtons();
                         console.log(this.enableClockIn);
                     })
@@ -80,7 +82,49 @@
                             this.enableClockOut = true;
                             break;
                     }
+                },
+                clockIn: function() {
+                    $.ajax({
+                        url: '/shifts/',
+                        method: "POST",
+                        data : {
+                            "_token" : "{{csrf_token()}}",
+                            "origin" : "timeclock",
+                            "employee_number" : this.employee_number
+                        }
+                    })
+                },
+                startBreak: function() {
+                    $.ajax({
+                        url: '/timeclock/break/start/',
+                        method: "POST",
+                        data : {
+                            "_token" : "{{csrf_token()}}",
+                            "employee_number" : this.employee_number
+                        }
+                    })
+                },
+                endBreak: function() {
+                    $.ajax({
+                        url: '/timeclock/break/end/',
+                        method: "POST",
+                        data : {
+                            "_token" : "{{csrf_token()}}",
+                            "employee_number" : this.employee_number
+                        }
+                    })
+                },
+                clockOut: function() {
+                    $.ajax({
+                        url: '/timeclock/clockout/',
+                        method: "POST",
+                        data : {
+                            "_token" : "{{csrf_token()}}",
+                            "employee_number" : this.employee_number
+                        }
+                    })
                 }
+
             },
             mounted(){
 
