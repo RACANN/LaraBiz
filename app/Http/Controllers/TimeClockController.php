@@ -79,21 +79,21 @@ class TimeClockController extends Controller
 
         //If the employee has open shifts then check if they need to go on break, come back from break, or clock out.
         if(Shift::checkForOpenShifts($employee->id)==true){
-            $shift = Shift::where('employee_id', '=', $employee->id)->first();
+            $shift = Shift::where('employee_id', '=', $employee->id)->where('open', '=', true)->first();
             if(empty($shift->break_start)){
                 $response['status']['code']=3;
                 $response['status']['description'] = $employee->first_name." ".$employee->last_name." clocked in with no break";
                 return response()->json($response);
-            }else{
-                if(empty($shift->break_end)){
-                    $response['status']['description'] = $employee->first_name." ".$employee->last_name.' Still on break';
-                    $response['status']['code'] = 4;
-                }else{
-                    $response['status']['description'] =  $employee->first_name." ".$employee->last_name.' back from break';
-                    $response['status']['code'] = 5;
-                }
-                return response()->json($response);
             }
+            if(!empty($shift->break_start) && empty($shift->break_end)){
+                $response['status']['description'] = $employee->first_name." ".$employee->last_name.' Still on break';
+                $response['status']['code'] = 4;
+            }else{
+                $response['status']['description'] =  $employee->first_name." ".$employee->last_name.' back from break';
+                $response['status']['code'] = 5;
+            }
+            return response()->json($response);
+
         }
     }
 

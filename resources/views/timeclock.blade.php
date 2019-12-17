@@ -66,7 +66,7 @@
                         case 3:
                             this.enableClockIn = false;
                             this.enableBreakStart = true;
-                            this.enableBreakEnd = true;
+                            this.enableBreakEnd = false;
                             this.enableClockOut = true;
                             break;
                         case 4:
