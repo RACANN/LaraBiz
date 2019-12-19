@@ -32,6 +32,7 @@
                 <th>Break Start</th>
                 <th>Break End</th>
                 <th>Shift End</th>
+                <th>Shift Length</th>
                 <th>Open</th>
                 <th></th>
             </tr>
@@ -41,10 +42,11 @@
                 <tr>
                     <td><a href="/shifts/{{$shift->id}}/edit">{{$shift->id}}</a></td>
                     <td>{{$shift->employee->last_name}}</td>
-                    <td>{{$shift->shift_start}}</td>
+                    <td>{{$shift->showTime('shift_start')}}</td>
                     <td>{{empty($shift->break_start) ? "No Break Start" : $shift->showTime('break_start')}}</td>
                     <td>{{empty($shift->break_end) ? "No Break End" : $shift->showTime('break_end')}}</td>
                     <td>{{empty($shift->shift_end) ? "No Shift End" : $shift->showTime('shift_end')}}</td>
+                    <td>{{$shift->open==true ? "Shift Still Open" : $shift->getShiftLength()}}</td>
                     <td><span style="color:{{$shift->open==true ? "orange" : "green"}}">{{$shift->open==true ? "Yes" : "No"}}</span></td>
                     <td><i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$shift->id}}" data-shift-time="{{$shift->created_at}}" data-employee-name="{{$shift->employee->last_name}}"></i></td>
                 </tr>

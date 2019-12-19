@@ -13,14 +13,13 @@ class Shift extends Model
     }
     public function getShiftLength()
     {
-        $grossShiftTime = ($this->shift_end - $this->shift_start);
-        $totalBreaks = 0;
-        if($this->break_start != null){
-            $totalBreaks = ($this->break_end - $this->break_start);
-        }
+        $shiftLength = gmdate('H:i:s', Carbon::parse($this->shift_end)->diffInSeconds(Carbon::parse($this->shift_start)));
 
-        return Carbon::parse($grossShiftTime - $totalBreaks)->toTimeString();
-
+        return !empty($this->getBreakLength()) ? gmdate('H:i:s', (strtotime($shiftLength) -  strtotime($this->getBreakLength()))) : $shiftLength;
+    }
+    public function getBreakLength()
+    {
+        return !empty($this->break_start) ? gmdate('H:i:s', Carbon::parse($this->break_end)->diffInSeconds(Carbon::parse($this->break_start))) : "";
     }
 
     public static function checkForOpenShifts($id)
@@ -44,13 +43,15 @@ class Shift extends Model
         switch ($option)
         {
             case "shift_start":
-                return Carbon::parse($this->break_start)->toDayDateTimeString();
+                return Carbon::parse($this->shift_start)->toDayDateTimeString();
             case "break_start":
                 return Carbon::parse($this->break_start)->toDayDateTimeString();
             case "break_end":
                 return Carbon::parse($this->break_end)->toDayDateTimeString();
             case "shift_end":
                 return Carbon::parse($this->shift_end)->toDayDateTimeString();
+            case "shift_length":
+                return Carbon::parse($this->getShiftLength());
             default:
                 return "";
 
