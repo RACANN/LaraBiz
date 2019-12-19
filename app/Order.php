@@ -14,8 +14,5 @@ class Order extends Model
     {
     	return $this->belongsTo(Employee::class);
     }
-    public function merchant_session()
-    {
-    	return $this->belongsTo(MerchantSession::class);
-    }
+
 }
