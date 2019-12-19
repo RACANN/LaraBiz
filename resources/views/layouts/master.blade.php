@@ -14,16 +14,18 @@
   </head>
   <body>
   <div id="app">
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Your Company Name
-      </h1>
-      <p class="subtitle">
-        Business Management System
-      </p>
-    </div>
-  </section>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Your Company Name
+          </h1>
+          <h2 class="subtitle">
+            Business Management System
+          </h2>
+        </div>
+      </div>
+    </section>
   
 
 
