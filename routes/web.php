@@ -13,30 +13,8 @@ use Illuminate\Support\Facades;
 |
 */
 
-Route::get('/', function () {
-
-    return view('EmployeePage');
-
-});
-
-Route::get('/reports', function(){
-    return view('reports');
-});
-
-Route::get('/search/', function(){
-    $employees = \App\Employee::all();
-    return $employees;
-});
-
-Route::get('/manager', function (){
-    return view('ManagerPage');
-});
-
-
-
-Route::post('/get-employees-async', "EmployeeController@indexAsync")->name('get-eemployees-async');
-
-Route::get('/employees-async', "EmployeeController@indexAsync")->name('employees-async');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/employees', 'EmployeeController@index')->name('employees.all');
 Route::get('/employees/{employee}', 'EmployeeController@show')->name('employees.show');
@@ -45,8 +23,6 @@ Route::get('/employees/{employee}/edit', 'EmployeeController@edit')->name('emplo
 Route::post('/employees', 'EmployeeController@store')->name('employees.store');
 Route::patch('/employees/{employee}', 'EmployeeController@update')->name('employees.update');
 Route::delete('/employees/{employee}', 'EmployeeController@destroy')->name('employees.destroy');
-
-
 Route::get('/shifts', 'ShiftController@index')->name('shifts.all');
 Route::get('/shifts/{shift}', 'ShiftController@show')->name('shifts.show');
 Route::get('/shift/new', 'ShiftController@create')->name('shifts.new');
@@ -54,7 +30,6 @@ Route::get('/shifts/{shift}/edit', 'ShiftController@edit')->name('shifts.edit');
 Route::post('/shifts', 'ShiftController@store')->name('shifts.store');
 Route::patch('/shifts/{shift}', 'ShiftController@update')->name('shifts.update');
 Route::delete('/shifts/{shift}', 'ShiftController@destroy')->name('shifts.destroy');
-
 Route::get('/products', 'ProductController@index')->name('products.all');
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
 Route::get('/product/new', 'ProductController@create')->name('products.new');
@@ -65,13 +40,15 @@ Route::delete('/products/{product}', 'ProductController@destroy')->name('product
 
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('EmployeePage');
+});
+Route::get('/manager', function (){
+    return view('ManagerPage');
+});
 
 
 //TimeClock Routes for custom logic
-//Clock in handled by ShiftController
 Route::get('/timeclock', function() {
     return view('timeclock');
 });
