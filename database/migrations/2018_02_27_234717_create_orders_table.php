@@ -19,8 +19,8 @@ class CreateOrdersTable extends Migration
             $table->integer('employee_id');
             $table->integer('customer_id')->nullable();
             $table->enum('paytype', ['cash', 'credit']);
-            $table->integer('total');
-            $table->integer('paid');
+            $table->float('total');
+            $table->float('paid');
             $table->timestamps();
         });
     }

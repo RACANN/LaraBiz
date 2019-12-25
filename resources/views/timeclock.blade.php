@@ -44,7 +44,7 @@
                     $.ajax({
                         url: '/timeclock/check/'+this.employee_number,
                         method: "GET"
-                    }).done(data => {
+                    }).done(data =>  {
                         this.status_code = data.status.code;
                         this.status_message = data.status.description;
                         this.toggleButtons();

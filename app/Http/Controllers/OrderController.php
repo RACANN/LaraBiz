@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -37,6 +39,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $order = new Order;
+        $order->total = request('total');
+        $order->paytype = request('paytype');
+        $order->paid = request('paid');
+        $order->order_time = Carbon::now();
+        $order->employee_id = 11;
+        $order->save();
+
+        foreach ($request['products'] as $product)
+        {
+            $order_detail = new OrderDetail;
+            $order_detail->order_id = $order->id;
+            $order_detail->product_id = $product['id'];
+            $order_detail->save();
+        }
 
     }
 

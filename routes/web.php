@@ -13,9 +13,12 @@ use Illuminate\Support\Facades;
 |
 */
 
+//Admin and User Routes
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//MVC Routes
 Route::get('/employees', 'EmployeeController@index')->name('employees.all');
 Route::get('/employees/{employee}', 'EmployeeController@show')->name('employees.show');
 Route::get('/employee/new', 'EmployeeController@create')->name('employees.new');
@@ -38,8 +41,10 @@ Route::post('/products', 'ProductController@store')->name('products.store');
 Route::patch('products/{product}', 'ProductController@update')->name('products.update');
 Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 
+Route::post('/orders', 'OrderController@store');
 
 
+//Page Routes
 Route::get('/', function () {
     return view('EmployeePage');
 });
@@ -47,12 +52,19 @@ Route::get('/manager', function (){
     return view('ManagerPage');
 });
 
-
-//TimeClock Routes for custom logic
 Route::get('/timeclock', function() {
     return view('timeclock');
 });
 
+Route::get('/pos', function(){
+    return view('/pos');
+});
+
+//Search Ajax Routes
+Route::get('/search/product/{upc}', 'SearchController@getProductByUpc');
+
+
+//TimeClock Ajax Routes
 Route::get('/timeclock/check/{id}', 'TimeClockController@CheckStatus');
 Route::post('/timeclock/break/start/', 'TimeClockController@StartBreak');
 Route::post('/timeclock/break/end/', 'TimeClockController@EndBreak');

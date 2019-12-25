@@ -5,9 +5,9 @@
 <form method="POST">
   {{ csrf_field() }}
 <div class="field">
-  <label class="label">Name</label>
+  <label class="label">Employee</label>
   <div class="control">
-    <input class="input" type="text" placeholder="Text input">
+    <select name="employee_id" id=""></select>
   </div>
 </div>
 
