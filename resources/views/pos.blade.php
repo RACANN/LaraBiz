@@ -22,20 +22,22 @@
 
             <div class="panel-block">
 
-                <ul>
-                    <li v-for="(product, index) in products" class="list-item">@{{product.name + ' | $' + product.price}} <i @click="removeItem(index)" style="color:#ff0000" class="fa fa-times" aria-hidden="true"></i></li>
-                </ul>
-                {{--<div style="min-height: 200px">--}}
-                    {{--<div class="card">--}}
-                        {{--<div class="card-content"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                <div style="min-height: 200px">
+                    <ul>
+                        <li v-for="(product, index) in products" class="list-item">@{{product.name + ' | $' + product.price}} <i @click="removeItem(index)" style="color:#ff0000" class="fa fa-times" aria-hidden="true"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-block">
+                <div class="control">
+                    <p>Total : $@{{ total }}</p>
+                </div>
             </div>
 
             <label class="panel-block">
                 <div class="control">
                     <label class="radio">
-                        <input type="radio" name="paytype" value="cash">
+                        <input type="radio" name="paytype" value="cash" checked>
                         Cash
                     </label>
                     <label class="radio">
@@ -45,8 +47,8 @@
                 </div>
             </label>
             <div class="panel-block">
-                <p class="control has-icons-left">
-                    <input class="input" type="tel" placeholder="Enter Pay Amount" v-model="paid">
+                <p class="control">Enter total amount paid</p>
+                    <input class="input" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Enter Pay Amount" v-model="paid">
             </div>
             <div class="panel-block">
                 <button class="button is-link is-outlined is-fullwidth" @click="completeSale">
@@ -87,20 +89,30 @@
                     console.log(this.total);
                 },
                 completeSale() {
-                    $.ajax({
-                        url: '/orders',
-                        method: 'POST',
-                        data: {
-                            "_token" : "{{csrf_token()}}",
-                            "products" : this.products,
-                            'paytype' : $("input[name=paytype]").val(),
-                            "price" : this.price,
-                            "paid" : this.paid,
-                            "total" : this.total
+                    if(this.paid >= this.total){
+                        $.ajax({
+                            url: '/orders',
+                            method: 'POST',
+                            data: {
+                                "_token" : "{{csrf_token()}}",
+                                "products" : this.products,
+                                'paytype' : $("input[name=paytype]").val(),
+                                "price" : this.price,
+                                "paid" : this.paid,
+                                "total" : this.total
 
-                        }
-                    })
-                    alert('sale cpmpleted!')
+                            }
+                        })
+                        alert('Sale completed.');
+                        var payType = $("input[name=paytype]").val();
+                        payType ? alert('Give them thier credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
+                        this.products = [];
+                        this.total = 0;
+                        this.paid = 0;
+                        this.upc = '';
+                    }else{
+                        alert("You need to collect at least $" + this.total)
+                    }
                 }
 
             }

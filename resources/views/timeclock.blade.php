@@ -10,7 +10,7 @@
             <p>@{{status_message}}</p>
             <div class="card-content">
                 <div class="content">
-                    <input class="input" type="text" placeholder="Enter Employee Number" v-model="employee_number">
+                    <input class="input" type="text" placeholder="Enter Employee Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" v-model="employee_number">
                 </div>
                <div class="control has-text-centered">
                    <button class="button is-primary is-rounded" @Click="getEmployeeData">Enter</button>

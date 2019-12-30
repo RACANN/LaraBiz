@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderDetail;
+use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,10 @@ class OrderController extends Controller
      */
     public function index()
     {
+
         $orders = Order::all();
 
-        return view('orders.index', 'orders');
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -44,7 +46,7 @@ class OrderController extends Controller
         $order->paytype = request('paytype');
         $order->paid = request('paid');
         $order->order_time = Carbon::now();
-        $order->employee_id = 11;
+        $order->employee_id = 11; //Deafult value for now
         $order->save();
 
         foreach ($request['products'] as $product)

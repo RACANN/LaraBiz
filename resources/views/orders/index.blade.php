@@ -1,37 +1,36 @@
 @extends('layouts.master')
 @section('content')
-
-
-    <nav class="panel">
-        <p class="panel-heading">
-            Orders
-        </p>
-        <div class="panel-block">
-            <p class="control has-icons-left">
-                <input class="input is-small" type="text" placeholder="search">
-                <span class="icon is-small is-left">
-        <i class="fa fa-search"></i>
-      </span>
-            </p>
+    <h1 class="title">@section('title', 'Orders')</h1>
+    <div class="navbar-menu">
+        <div class="navbar-end">
+            <div class="button is-success" id="btn_add_new">Add New</div>
         </div>
-        <p class="panel-tabs">
-            <a class="is-primary is-outlined"><span class="icon is-small is-left">
-        <i class="fa fa-check"></i>
-      </span></a>
-            <a class="is-primary is-outlined"><span class="icon is-small is-left">
-        <i class="fa fa-sort"></i>
-      </span></a>
-            <a class="is-primary is-outlined" href="/order/new"><span class="icon is-small is-left">
-        <i class="fa fa-plus"></i>
-      </span></a>
-            <a class="is-primary is-outlined"><span class="icon is-small is-left">
-        <i class="fa fa-dollar"></i>
-      </span></a>
-        </p>
+    </div>
+
+    <hr>
+
+    <div id="orders">
+
         @foreach($orders as $order)
+            <h2>Order #{{$order->id}} | {{$order->order_time}}</h2>
+            <div>
+                <ul>
+                    @foreach($order->orderDetails as $od)
+                        <li>{{$od->product()->name}} | {{$od->product()->price}}</li>
+                    @endforeach
+                </ul>
 
-            @include('orders.order')
-
+            </div>
         @endforeach
-    </nav>
+    </div>
+
+@section('custom-js')
+    <script>
+        $(document).ready(function() {
+
+            $("#orders").accordion();
+        });
+    </script>
+@endsection
+
 @endsection

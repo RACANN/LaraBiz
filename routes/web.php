@@ -42,6 +42,7 @@ Route::patch('products/{product}', 'ProductController@update')->name('products.u
 Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 
 Route::post('/orders', 'OrderController@store');
+Route::get('/orders', 'OrderController@index');
 
 
 //Page Routes

@@ -24,7 +24,7 @@
 
     <a  class="navbar-item" href="/employees/">Employees</a>
     <a  class="navbar-item" href="/shifts">Shifts</a>
-    <a  class="navbar-item" href="#">Orders</a>
+    <a  class="navbar-item" href="/orders">Orders</a>
     <a  class="navbar-item" href="/products">Inventory</a>
 
     <div class="navbar-burger">
