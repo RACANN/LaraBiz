@@ -105,7 +105,7 @@
                         })
                         alert('Sale completed.');
                         var payType = $("input[name=paytype]").val();
-                        payType ? alert('Give them thier credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
+                        payType=='credit' ? alert('Give them thier credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
                         this.products = [];
                         this.total = 0;
                         this.paid = 0;

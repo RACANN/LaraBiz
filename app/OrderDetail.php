@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
 {
-    public function product()
+    public function products()
     {
-         return Product::find($this->product_id)->first();
+         return Product::all()->where("id", "=", $this->product_id);
     }
     public function order()
     {

@@ -8,6 +8,7 @@
         <section class="modal-card-body">
             <form method="POST" action="/orders">
                 {{ csrf_field() }}
+
             </form>
         </section>
 
