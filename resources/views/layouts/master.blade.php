@@ -15,7 +15,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Your Company Name
+            LaraBiz
           </h1>
           <h2 class="subtitle">
             Business Management System

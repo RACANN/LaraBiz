@@ -15,16 +15,18 @@
         @foreach($orders as $order)
             <h1>Order #: {{$order->id}} | From:  {{$order->order_time}}</h1>
             <div>
-                <p>Order Total: ${{$order->total}} | Paytype: {{$order->paytype}}</p>
+
                 <ul>
                 @foreach($order->orderDetails as $od)
                     @foreach($od->products() as $product)
-                            <li class="list-item">{{$product->name}}</li>
+                            <li class="list-item">{{$product->name}} | ${{$product->price}}</li>
                     @endforeach
 
                 @endforeach
                 </ul>
                 <br>
+                <p>Order Total: ${{$order->total}} | Amount Paid: ${{$order->paid}} | Paytype: {{$order->paytype}}</p>
+                <hr>
                 <i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$order->id}}"></i>
             </div>
             {{--<div class="card">--}}
@@ -73,6 +75,66 @@
 
             });
         });
+    </script>
+    <script>
+        var app = new Vue({
+            el: '#pos',
+            data: {
+                upc: '',
+                total: 0,
+                paid: 0,
+                products: []
+            },
+            mounted(){
+
+            },
+            methods: {
+                addItem() {
+                    $.ajax({
+                        url: '/search/product/'+this.upc,
+                        method: 'GET'
+                    }).done(data => {
+                        this.products.push(data);
+                        this.total += data.price;
+                        console.log(this.total);
+                    })
+                },
+                removeItem(index) {
+                    this.total -= this.products[index].price;
+                    this.products.splice(index,1)
+                    console.log(this.total);
+                },
+                completeSale() {
+                    if(this.paid >= this.total){
+                        $.ajax({
+                            url: '/orders',
+                            method: 'POST',
+                            data: {
+                                "_token" : "{{csrf_token()}}",
+                                "products" : this.products,
+                                'paytype' : $("input[name=paytype]").val(),
+                                "price" : this.price,
+                                "paid" : this.paid,
+                                "total" : this.total
+
+                            }
+                        })
+                        alert('Sale completed.');
+                        var payType = $("input[name=paytype]").val();
+                        payType=='credit' ? alert('Give them thier credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
+                        this.products = [];
+                        this.total = 0;
+                        this.paid = 0;
+                        this.upc = '';
+                        location.reload();
+                    }else{
+                        alert("You need to collect at least $" + this.total)
+                    }
+                }
+
+            }
+
+        })
     </script>
 @endsection
 

@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 //Admin and User Routes
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -26,6 +15,7 @@ Route::get('/employees/{employee}/edit', 'EmployeeController@edit')->name('emplo
 Route::post('/employees', 'EmployeeController@store')->name('employees.store');
 Route::patch('/employees/{employee}', 'EmployeeController@update')->name('employees.update');
 Route::delete('/employees/{employee}', 'EmployeeController@destroy')->name('employees.destroy');
+
 Route::get('/shifts', 'ShiftController@index')->name('shifts.all');
 Route::get('/shifts/{shift}', 'ShiftController@show')->name('shifts.show');
 Route::get('/shift/new', 'ShiftController@create')->name('shifts.new');
@@ -33,6 +23,7 @@ Route::get('/shifts/{shift}/edit', 'ShiftController@edit')->name('shifts.edit');
 Route::post('/shifts', 'ShiftController@store')->name('shifts.store');
 Route::patch('/shifts/{shift}', 'ShiftController@update')->name('shifts.update');
 Route::delete('/shifts/{shift}', 'ShiftController@destroy')->name('shifts.destroy');
+
 Route::get('/products', 'ProductController@index')->name('products.all');
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
 Route::get('/product/new', 'ProductController@create')->name('products.new');
@@ -43,6 +34,8 @@ Route::delete('/products/{product}', 'ProductController@destroy')->name('product
 
 Route::post('/orders', 'OrderController@store');
 Route::get('/orders', 'OrderController@index');
+Route::delete('/orders/{order}', 'OrderController@destroy');
+
 
 
 //Page Routes

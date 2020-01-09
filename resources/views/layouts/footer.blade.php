@@ -2,7 +2,7 @@
   <div class="box">
     <div class="content has-text-centered">
       <p>
-        <strong>Employee Management System by <a href="https://bitbucket.org/racann/">Ryan Cann</a></strong>
+        <strong>LaraBiz by <a href="https://github.com/racann" target="_blank">Ryan Cann</a></strong>
       </p>
     </div>
   </div>

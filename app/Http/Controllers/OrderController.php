@@ -7,6 +7,7 @@ use App\OrderDetail;
 use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -99,8 +100,11 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        $order = Order::find($id);
+        DB::table('order_details')->where('order_id', '=', $order->id)->delete();
+        $order->delete();
+        return redirect('/orders');
     }
 }
