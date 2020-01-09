@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -145,6 +146,7 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         $employee = Employee::find($id);
+        DB::table('shifts')->where('employee_id', '=', $employee->id)->delete();
         $employee->delete();
         return redirect('/employees');
     }

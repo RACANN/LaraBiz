@@ -36,7 +36,7 @@ class Shift extends Model
     }
     public function convertToLaravelTimeStamp($value)
     {
-        return Carbon::parse($value)->toDateTimeString();
+        return (!empty($value)) ? Carbon::parse($value)->toDateTimeString() : $value;
     }
     public function showTime($option)
     {
