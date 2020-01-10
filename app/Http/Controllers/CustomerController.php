@@ -38,7 +38,6 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = new Customer;
-
     }
 
     /**

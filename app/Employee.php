@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $fillable = ['ssn', 'employee_number', 'first_name', 'last_name', 'birth_date', 'phone', 'email',
-        'hire_date', 'pay'];
+        'hire_date', 'pay', ];
 
     public function shifts()
     {
@@ -16,7 +16,7 @@ class Employee extends Model
 
     public function calcPay($time)
     {
-        return ($time * $this->pay);
+        return $time * $this->pay;
     }
 
     public function calcPayRoll($startPayDate, $endPayDate)
@@ -25,13 +25,11 @@ class Employee extends Model
 
         $pay = 0;
 
-        foreach ($shiftsInRange as $shift)
-        {
+        foreach ($shiftsInRange as $shift) {
             $time = $shift->getShiftLength();
             $pay += $this->calcPay($time);
-
         }
+
         return $pay;
     }
-
 }

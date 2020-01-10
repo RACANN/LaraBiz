@@ -16,15 +16,16 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::all();
+
         return view('employees.index', compact('employees'));
     }
 
     public function indexAsync()
     {
         $employees = Employee::all();
+
         return response()->json(compact('employees'));
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +34,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-         return view('employees.create');
+        return view('employees.create');
     }
 
     /**
@@ -44,7 +45,6 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        
         $this->validate(request(), [
             'ssn' => 'required',
             'employee_number' => 'required',
@@ -52,9 +52,9 @@ class EmployeeController extends Controller
             'last_name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'birth_date' => 'required', 
+            'birth_date' => 'required',
             'hire_date' => 'required',
-            'pay' => 'required'
+            'pay' => 'required',
             ]);
 
         $employee = new Employee;
@@ -72,11 +72,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-         return redirect('/employees');
-
-
-
-
+        return redirect('/employees');
     }
 
     /**
@@ -117,9 +113,9 @@ class EmployeeController extends Controller
             'last_name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'birth_date' => 'required', 
+            'birth_date' => 'required',
             'hire_date' => 'required',
-            'pay' => 'required'
+            'pay' => 'required',
             ]);
 
         $employee->ssn = request('ssn');
@@ -148,6 +144,7 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         DB::table('shifts')->where('employee_id', '=', $employee->id)->delete();
         $employee->delete();
+
         return redirect('/employees');
     }
 }

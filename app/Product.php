@@ -11,7 +11,6 @@ class Product extends Model
         $this->quantity = $this->quantity + $amount;
 
         $this->save();
-
     }
 
     public function subtractQty($amount)
@@ -20,5 +19,4 @@ class Product extends Model
 
         $this->save();
     }
-
 }

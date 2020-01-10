@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Shift;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ShiftController extends Controller
 {
@@ -41,29 +41,30 @@ class ShiftController extends Controller
     {
         $employee = Employee::where('employee_number', '=', request('employee_number'))->first();
         $origin = $_POST['origin'];
-        if($origin == "manager"){
-            if(Shift::checkForOpenShifts($employee->id)==false){
+        if ($origin == 'manager') {
+            if (Shift::checkForOpenShifts($employee->id) == false) {
                 $shift = new Shift;
                 $shift->employee_id = $employee->id;
                 $shift->shift_start = Carbon::now();
                 $shift->open = true;
                 $shift->save();
-                return redirect('/shifts')->with('shift_added', "Shift added for ".$employee->first_name." ".$employee->last_name.'.');
-            }else{
-                return redirect('/shifts')->with('employee_exists', $employee->first_name." ".$employee->last_name.' already has open shifts');
-            }
-        }elseif ($origin=="timeclock"){
-            if(Shift::checkForOpenShifts($employee->id)==false){
-                $shift = new Shift;
-                $shift->employee_id = $employee->id;
-                $shift->shift_start = Carbon::now();
-                $shift->open = true;
-                $shift->save();
-                return redirect('/timeclock')->with('shift_added', "Shift added for ".$employee->first_name." ".$employee->last_name.'.');
-            }else{
-                return redirect('/timeclock')->with('employee_exists', $employee->first_name." ".$employee->last_name.' already has open shifts');
-            }
 
+                return redirect('/shifts')->with('shift_added', 'Shift added for '.$employee->first_name.' '.$employee->last_name.'.');
+            } else {
+                return redirect('/shifts')->with('employee_exists', $employee->first_name.' '.$employee->last_name.' already has open shifts');
+            }
+        } elseif ($origin == 'timeclock') {
+            if (Shift::checkForOpenShifts($employee->id) == false) {
+                $shift = new Shift;
+                $shift->employee_id = $employee->id;
+                $shift->shift_start = Carbon::now();
+                $shift->open = true;
+                $shift->save();
+
+                return redirect('/timeclock')->with('shift_added', 'Shift added for '.$employee->first_name.' '.$employee->last_name.'.');
+            } else {
+                return redirect('/timeclock')->with('employee_exists', $employee->first_name.' '.$employee->last_name.' already has open shifts');
+            }
         }
     }
 
@@ -86,7 +87,7 @@ class ShiftController extends Controller
      */
     public function edit(Shift $shift)
     {
-        return view ('shifts.edit', compact('shift'));
+        return view('shifts.edit', compact('shift'));
     }
 
     /**
@@ -104,7 +105,8 @@ class ShiftController extends Controller
         $shift->shift_end = $shift->convertToLaravelTimeStamp(request('shift_end'));
         $shift->open = request('open');
         $shift->save();
-        return redirect('/shifts')->with('shift_edited', "Shift edited for ".$shift->employee->first_name." ".$shift->employee->last_name.'.');
+
+        return redirect('/shifts')->with('shift_edited', 'Shift edited for '.$shift->employee->first_name.' '.$shift->employee->last_name.'.');
     }
 
     /**

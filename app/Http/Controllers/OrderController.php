@@ -18,7 +18,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-
         $orders = Order::all();
 
         return view('orders.index', compact('orders'));
@@ -31,7 +30,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return ('orders.create');
+        return 'orders.create';
     }
 
     /**
@@ -50,14 +49,12 @@ class OrderController extends Controller
         $order->employee_id = 11; //Deafult value for now
         $order->save();
 
-        foreach ($request['products'] as $product)
-        {
+        foreach ($request['products'] as $product) {
             $order_detail = new OrderDetail;
             $order_detail->order_id = $order->id;
             $order_detail->product_id = $product['id'];
             $order_detail->save();
         }
-
     }
 
     /**
@@ -105,6 +102,7 @@ class OrderController extends Controller
         $order = Order::find($id);
         DB::table('order_details')->where('order_id', '=', $order->id)->delete();
         $order->delete();
+
         return redirect('/orders');
     }
 }
