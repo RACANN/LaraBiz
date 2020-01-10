@@ -41,12 +41,12 @@ class ProductController extends Controller
             'name' => 'required',
            'description' => 'required',
            'cost' => 'required',
-           'price' => 'required'
+           'price' => 'required',
         ]);
 
         $product = new Product;
         $product->name = request('name');
-        $product->upc  = request('upc');
+        $product->upc = request('upc');
         $product->description = request('description');
         $product->cost = request('cost');
         $product->price = request('price');
@@ -56,7 +56,6 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('/products');
-
     }
 
     /**
@@ -95,7 +94,7 @@ class ProductController extends Controller
             'cost' => 'required',
             'price' => 'required',
         ]);
-        $product->upc  = request('upc');
+        $product->upc = request('upc');
         $product->description = request('description');
         $product->cost = request('cost');
         $product->price = request('price');

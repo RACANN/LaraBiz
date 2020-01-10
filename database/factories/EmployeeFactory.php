@@ -14,6 +14,6 @@ $factory->define(App\Employee::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'phone' => $faker->unique()->randomNumber(),
         'birth_date' => $faker->dateTime(),
-        'hire_date' => $faker->dateTime()
+        'hire_date' => $faker->dateTime(),
     ];
 });

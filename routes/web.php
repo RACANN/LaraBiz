@@ -6,7 +6,6 @@ use Illuminate\Support\Facades;
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 //MVC Routes
 Route::get('/employees', 'EmployeeController@index')->name('employees.all');
 Route::get('/employees/{employee}', 'EmployeeController@show')->name('employees.show');
@@ -36,27 +35,24 @@ Route::post('/orders', 'OrderController@store');
 Route::get('/orders', 'OrderController@index');
 Route::delete('/orders/{order}', 'OrderController@destroy');
 
-
-
 //Page Routes
 Route::get('/', function () {
     return view('EmployeePage');
 });
-Route::get('/manager', function (){
+Route::get('/manager', function () {
     return view('ManagerPage');
 });
 
-Route::get('/timeclock', function() {
+Route::get('/timeclock', function () {
     return view('timeclock');
 });
 
-Route::get('/pos', function(){
+Route::get('/pos', function () {
     return view('/pos');
 });
 
 //Search Ajax Routes
 Route::get('/search/product/{upc}', 'SearchController@getProductByUpc');
-
 
 //TimeClock Ajax Routes
 Route::get('/timeclock/check/{id}', 'TimeClockController@CheckStatus');
