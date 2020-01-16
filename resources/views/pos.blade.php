@@ -37,7 +37,7 @@
             <label class="panel-block">
                 <div class="control">
                     <label class="radio">
-                        <input type="radio" name="paytype" value="cash" checked>
+                        <input type="radio" name="paytype" value="cash">
                         Cash
                     </label>
                     <label class="radio">
@@ -104,8 +104,9 @@
                             }
                         })
                         alert('Sale completed.');
-                        var payType = $("input[name=paytype]").val();
-                        payType=='credit' ? alert('Give them thier credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
+                        let payType = $("input[name=paytype]:checked").val();
+                        console.log(payType);
+                        payType==='credit' ? alert('Give them thier credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
                         this.products = [];
                         this.total = 0;
                         this.paid = 0;
