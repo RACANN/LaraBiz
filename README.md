@@ -49,7 +49,7 @@ Edit your Laravel .env file and you're good to go!
 ## Built With
 
 * [Laravel](https://laravel.com/) - Php Framework for Web Artisans  
-* [Vuejs](https://vuejs.org/) - The Progressive Javascript Framework
+* [Vue](https://vuejs.org/) - The Progressive Javascript Framework
 * [Bulma](https://bulma.io/) - Open Source CSS Framework based on Flexbox.
 * [JQuery](https://jquery.com/) - Powerful Javascript Library. Write Less Do More.
 * [DataTables](https://datatables.net/) - Table Plugin For JQuery
