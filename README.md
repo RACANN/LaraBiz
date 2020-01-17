@@ -13,10 +13,10 @@ This a web-based business management system built with php and javascript. This 
 
 ### Specs
 
-Laravel 6.0
-Node 12.13.1
-Vue 2.6.11
-Jquery 3.4.1
+* Laravel 6.0
+* Node 12.13.1
+* Vue 2.6.11
+* Jquery 3.4.1
 
 ## Getting Started
 
