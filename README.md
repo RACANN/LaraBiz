@@ -2,7 +2,7 @@
 
 ## Summary
 
-This a web-based business management system built with php and javascript. This Project is still in early stages. All core features are currently working but you may experince issues such as  lack of input validation, overnight shift calculation issues, etc. This is still a work in progress.
+This a web-based business management system built with php and javascript. This Project is still in early stages. All core features are currently working but you may experince issues such as  lack of input validation, overnight shift calculation issues, etc.
 
 ### Features
 
@@ -50,8 +50,9 @@ Edit your Laravel .env file and you're good to go!
 
 * [Laravel](https://laravel.com/) - Php Framework for Web Artisans  
 * [Vuejs](https://vuejs.org/) - The Progressive Javascript Framework
-* [Jquery](https://jquery.com/) - Powerful Javascript Library. Write Less Do More.
 * [Bulma](https://bulma.io/) - Open Source CSS Framework based on Flexbox.
+* [JQuery](https://jquery.com/) - Powerful Javascript Library. Write Less Do More.
+* [DataTables](https://datatables.net/) - Table Plugin For JQuery
 
 ## Authors
 
