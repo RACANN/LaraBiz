@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('order_time');
-            $table->integer('employee_id');
+            $table->integer('employee_id')->nullable();
             $table->integer('customer_id')->nullable();
             $table->enum('paytype', ['cash', 'credit']);
             $table->float('total');

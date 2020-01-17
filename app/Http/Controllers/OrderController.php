@@ -46,7 +46,6 @@ class OrderController extends Controller
         $order->paytype = request('paytype');
         $order->paid = request('paid');
         $order->order_time = Carbon::now();
-        $order->employee_id = 11; //Deafult value for now
         $order->save();
 
         foreach ($request['products'] as $product) {
