@@ -2,7 +2,7 @@
 
 ## Summary
 
-This a web-based business management system built with php and javascript. This Project is still in early stages. All core features are currently working but you may experince minor issues or incomplete sub-features.
+This a web-based business management system built with php and javascript. This Project is still in its early stages. All core features are currently working but you may experince minor issues or incomplete sub-features.
 
 ### Features
 
