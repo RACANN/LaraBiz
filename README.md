@@ -24,8 +24,17 @@ This a web-based business management system built with php and javascript. This 
 
 System requirements
 
-* php 7
+* git
 * composer
+* PHP >= 7.2.0
+* BCMath PHP Extension
+* Ctype PHP Extension
+* JSON PHP Extension
+* Mbstring PHP Extension
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Tokenizer PHP Extension
+* XML PHP Extension
 * node
 * npm
 * database server (preferably MYSQL or MariaDB)
