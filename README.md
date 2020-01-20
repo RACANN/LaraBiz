@@ -58,8 +58,17 @@ composer install
 ```
 npm install
 ```
+Create empty database in SQL and edit your database connection in your Laravel .env file.
 
-Edit your Laravel .env file and you're good to go!
+Run database migrations 
+```
+php artisan migrate 
+```
+Start local server
+
+```
+php artisan serve
+```
 
 
 ## Built With
