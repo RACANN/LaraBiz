@@ -11,7 +11,6 @@
     <hr>
 
     <div id="orders">
-
         @foreach($orders as $order)
             <h1>Order #: {{$order->id}} | From:  {{$order->order_time}}</h1>
             <div>
@@ -29,16 +28,6 @@
                 <hr>
                 <i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$order->id}}"></i>
             </div>
-            {{--<div class="card">--}}
-                {{--<div class="card-content">--}}
-                    {{--<h1>Order #: {{$order->id}}</h1>--}}
-                    {{--<ul>--}}
-                        {{--@foreach($order->orderDetails as $od)--}}
-                            {{--<li class="list-item">{{$od->product()->first()->name}}</li>--}}
-                        {{--@endforeach--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--</div>--}}
         @endforeach
     </div>
 

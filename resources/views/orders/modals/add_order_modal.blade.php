@@ -13,7 +13,6 @@
                     </p>
                     <p class="panel-tabs">
                         <a class="is-active">New Sale</a>
-                        <a>Past Sales</a>
                     </p>
                     <div class="panel-block">
                         <p class="control has-icons-left">
