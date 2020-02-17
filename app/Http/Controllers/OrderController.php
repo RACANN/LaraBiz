@@ -23,6 +23,17 @@ class OrderController extends Controller
         return view('orders.index', compact('orders'));
     }
 
+    public function indexAsync()
+    {
+        $data = [];
+        $orders = Order::all();
+
+        foreach($orders as $order){
+            $data = ["order" => ["order_id" => $order->id, "order_time" => $order->order_time, "order_total" => $order->total], "details" => $order->orderDetails];
+        }
+        return response()->json($data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -65,6 +76,12 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
+    }
+
+    public function showAll()
+    {
+        $orders = Order::all();
+        return view('orders.partials.past_orders', compact('orders'));
     }
 
     /**

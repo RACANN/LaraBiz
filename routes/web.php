@@ -33,6 +33,8 @@ Route::delete('/products/{product}', 'ProductController@destroy')->name('product
 
 Route::post('/orders', 'OrderController@store');
 Route::get('/orders', 'OrderController@index');
+Route::get('/orders/show/all', 'OrderController@showAll');
+Route::get('/orders/data', 'OrderController@indexAjax');
 Route::delete('/orders/{order}', 'OrderController@destroy');
 
 //Page Routes

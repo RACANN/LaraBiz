@@ -6,15 +6,21 @@
                 Sale
             </p>
             <p class="panel-tabs">
-                <a class="is-active">New Sale</a>
-                <a>Past Sales</a>
+                <a id="newSaleTab" class="is-active" @click="newSale">New Sale</a>
+                <a id="pastSalesTab" @click="pastSales">Past Sales</a>
             </p>
-            <div class="panel-block">
+            <div class="container" id="pastSalesContainer">
+                <div class="panel-block" id="past_sales_content">
+
+                </div>
+            </div>
+            <div class="container" id="newSaleContainer">
+                <div class="panel-block">
                 <p class="control has-icons-left">
                     <input class="input" type="text" placeholder="Enter upc code" v-model="upc">
                     <span class="icon is-left">
-        <i class="fa fa-search" aria-hidden="true"></i>
-      </span>
+                <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
                 </p>
                 <button class="button is-primary" @Click="addItem">Search</button>
             </div>
@@ -48,12 +54,13 @@
             </label>
             <div class="panel-block">
                 <p class="control">Enter total amount paid</p>
-                    <input class="input" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Enter Pay Amount" v-model="paid">
+                    <input class="input" type="text" placeholder="Enter Pay Amount" v-model="paid">
             </div>
             <div class="panel-block">
                 <button class="button is-link is-outlined is-fullwidth" @click="completeSale">
                     Complete Sale
                 </button>
+            </div>
             </div>
         </nav>
     </div>
@@ -67,10 +74,14 @@
                 upc: '',
                 total: 0,
                 paid: 0,
-                products: []
+                products: [],
+                sales: []
             },
             mounted(){
+                $('#pastSalesContainer').hide();
+                this.getPastSales();
 
+                console.log(this.sales);
             },
             methods: {
                 addItem() {
@@ -81,6 +92,16 @@
                         this.products.push(data);
                         this.total += data.price;
                         console.log(this.total);
+                    })
+                },
+                getPastSales() {
+                    $.ajax({
+                        url: '/orders/show/all',
+                        method: 'GET'
+                    }).done(data => {
+                        $("#past_sales_content").append(data);
+                        $("#orders").scroll();
+
                     })
                 },
                 removeItem(index) {
@@ -114,6 +135,23 @@
                     }else{
                         alert("You need to collect at least $" + this.total)
                     }
+                },
+                newSale() {
+
+                    $("#pastSalesTab").removeClass('is-active');
+                    $("#pastSalesContainer").hide();
+
+                    $("#newSaleTab").addClass('is-active');
+                    $("#newSaleContainer").slideDown();
+
+                },
+                pastSales() {
+
+                    $("#newSaleTab").removeClass('is-active');
+                    $("#newSaleContainer").hide();
+
+                    $("#pastSalesTab").addClass('is-active');
+                    $("#pastSalesContainer").slideDown();
                 }
 
             }
