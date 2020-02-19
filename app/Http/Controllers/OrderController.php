@@ -53,6 +53,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $order = new Order;
+        $order->employee_id = request('employee_id');
         $order->total = request('total');
         $order->paytype = request('paytype');
         $order->paid = request('paid');

@@ -55,6 +55,7 @@ Route::get('/pos', function () {
 
 //Search Ajax Routes
 Route::get('/search/product/{upc}', 'SearchController@getProductByUpc');
+Route::get('/search/employee/{employee_number}', 'SearchController@getEmployeeByEmployeeNumber');
 
 //TimeClock Ajax Routes
 Route::get('/timeclock/check/{id}', 'TimeClockController@CheckStatus');
