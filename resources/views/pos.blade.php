@@ -3,7 +3,7 @@
     <div id="pos">
         <nav class="panel">
             <p class="panel-heading">
-                Sale
+                Point Of Sale
             </p>
             <p class="panel-tabs">
                 <a id="newSaleTab" class="is-active" @click="newSale">New Sale</a>
@@ -15,7 +15,11 @@
                 </div>
             </div>
             <div class="container" id="newSaleContainer">
+                <div id="panel-block">
+                    <h2>Employee: @{{ employee.id + ' ' + employee.firstName + ' '+employee.lastName}}</h2>
+                </div>
                 <div class="panel-block">
+
                 <p class="control has-icons-left">
                     <input class="input" type="text" placeholder="Enter upc code" v-model="upc">
                     <span class="icon is-left">
@@ -71,6 +75,7 @@
         var app = new Vue({
             el: '#pos',
             data: {
+                employee: {id: '', firstName : '', lastName :  '', employeeNumber : ''},
                 upc: '',
                 total: 0,
                 paid: 0,
@@ -78,6 +83,14 @@
                 sales: []
             },
             mounted(){
+                let employee_number = prompt("Enter Employee Number: ");
+                if(employee_number != null){
+                    this.getEmployee(employee_number);
+                }else{
+                    alert('You must enter Employee Number to use Point Of Sale.');
+                    alert('You will be redirected to the home page now. Please know your employee number before trying again');
+                    window.location.href = "/";
+                }
                 $('#pastSalesContainer').hide();
                 this.getPastSales();
 
@@ -104,6 +117,17 @@
 
                     })
                 },
+                getEmployee(employee_number) {
+                    $.ajax({
+                        url: '/search/employee/'+employee_number,
+                        method: 'GET'
+                    }).done(data => {
+                        this.employee.id = data.id;
+                        this.employee.employeeNumber = data.employee_number;
+                        this.employee.firstName = data.first_name;
+                        this.employee.lastName = data.last_name;
+                    })
+                },
                 removeItem(index) {
                     this.total -= this.products[index].price;
                     this.products.splice(index,1)
@@ -116,6 +140,7 @@
                             method: 'POST',
                             data: {
                                 "_token" : "{{csrf_token()}}",
+                                "employee_id" : this.employee.id,
                                 "products" : this.products,
                                 'paytype' : $("input[name=paytype]").val(),
                                 "price" : this.price,
