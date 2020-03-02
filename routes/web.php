@@ -57,16 +57,13 @@ Route::group(['middleware' => ['auth']], function () {
         return view('/pos');
     });
 
-//Search Ajax Routes
+    //Search Ajax Routes
     Route::get('/search/product/{upc}', 'SearchController@getProductByUpc');
+    Route::get('/search/employee/{employee_number}', 'SearchController@getEmployeeByEmployeeNumber');
 
-//TimeClock Ajax Routes
+    //TimeClock Ajax Routes
     Route::get('/timeclock/check/{id}', 'TimeClockController@CheckStatus');
     Route::post('/timeclock/break/start/', 'TimeClockController@StartBreak');
     Route::post('/timeclock/break/end/', 'TimeClockController@EndBreak');
     Route::post('/timeclock/clockout/', 'TimeClockController@ClockOut');
 });
-
-
-
-
