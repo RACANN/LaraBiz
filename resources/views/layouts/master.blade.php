@@ -41,7 +41,6 @@
       @include('layouts.footer')
       @yield('footer')
 
-      
 
     </main><!-- /.container -->
 

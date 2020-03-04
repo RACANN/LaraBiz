@@ -100,7 +100,10 @@
                 addItem() {
                     $.ajax({
                         url: '/search/product/'+this.upc,
-                        method: 'GET'
+                        method: 'POST',
+                        data: {
+                            "_token" : "{{csrf_token()}}"
+                        }
                     }).done(data => {
                         this.products.push(data);
                         this.total += data.price;
@@ -110,7 +113,10 @@
                 getPastSales() {
                     $.ajax({
                         url: '/orders/show/all',
-                        method: 'GET'
+                        method: 'POST',
+                        data: {
+                            "_token" : "{{csrf_token()}}"
+                        }
                     }).done(data => {
                         $("#past_sales_content").append(data);
                         $("#orders").scroll();
@@ -120,7 +126,10 @@
                 getEmployee(employee_number) {
                     $.ajax({
                         url: '/search/employee/'+employee_number,
-                        method: 'GET'
+                        method: 'POST',
+                        data: {
+                            "_token" : "{{csrf_token()}}"
+                        }
                     }).done(data => {
                         this.employee.id = data.id;
                         this.employee.employeeNumber = data.employee_number;
