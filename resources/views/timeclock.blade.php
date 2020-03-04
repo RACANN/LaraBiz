@@ -43,7 +43,10 @@
                 getEmployeeData: function(){
                     $.ajax({
                         url: '/timeclock/check/'+this.employee_number,
-                        method: "GET"
+                        method: "POST",
+                        data: {
+                            "_token" : "{{csrf_token()}}"
+                        }
                     }).done(data =>  {
                         this.status_code = data.status.code;
                         this.status_message = data.status.description;

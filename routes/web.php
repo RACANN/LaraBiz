@@ -37,8 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/orders', 'OrderController@store');
     Route::get('/orders', 'OrderController@index');
-    Route::get('/orders/show/all', 'OrderController@showAll');
-    Route::get('/orders/data', 'OrderController@indexAjax');
+    Route::post('/orders/show/all', 'OrderController@showAll');
+    Route::post('/orders/data', 'OrderController@indexAjax');
     Route::delete('/orders/{order}', 'OrderController@destroy');
 
     //Page Routes
@@ -58,11 +58,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     //Search Ajax Routes
-    Route::get('/search/product/{upc}', 'SearchController@getProductByUpc');
-    Route::get('/search/employee/{employee_number}', 'SearchController@getEmployeeByEmployeeNumber');
+    Route::post('/search/product/{upc}', 'SearchController@getProductByUpc');
+    Route::post('/search/employee/{employee_number}', 'SearchController@getEmployeeByEmployeeNumber');
 
     //TimeClock Ajax Routes
-    Route::get('/timeclock/check/{id}', 'TimeClockController@CheckStatus');
+    Route::post('/timeclock/check/{id}', 'TimeClockController@CheckStatus');
     Route::post('/timeclock/break/start/', 'TimeClockController@StartBreak');
     Route::post('/timeclock/break/end/', 'TimeClockController@EndBreak');
     Route::post('/timeclock/clockout/', 'TimeClockController@ClockOut');
