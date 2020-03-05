@@ -14,11 +14,13 @@ class SearchController extends Controller
 
     public function getEmployeeByEmployeeNumber($employee_number)
     {
-        return response()->json(DB::table('employees')->select( 'id', 'first_name', 'last_name', 'employee_number')->where('employee_number', '=', $employee_number)->first());
+        $employee = DB::table('employees')->select( 'id', 'first_name', 'last_name', 'employee_number')->where('employee_number', '=', $employee_number)->first();
+        return empty($employee) ?  response()->json(['employee_found' => false]) :  response()->json($employee);
     }
 
     public function getProductByUpc(Request $request)
     {
-        return response()->json(DB::table('products')->where('upc', request('upc'))->first());
+        $product = DB::table('products')->where('upc', request('upc'))->first();
+        return empty($product) ? response()->json(['product_found' => false]) :  response()->json($product);
     }
 }
