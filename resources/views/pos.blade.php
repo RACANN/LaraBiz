@@ -83,14 +83,7 @@
                 sales: []
             },
             mounted(){
-                let employee_number = prompt("Enter Employee Number: ");
-                if(employee_number != null){
-                    this.getEmployee(employee_number);
-                }else{
-                    alert('You must enter Employee Number to use Point Of Sale.');
-                    alert('You will be redirected to the home page now. Please know your employee number before trying again');
-                    window.location.href = "/";
-                }
+                this.employeeLogIn();
                 $('#pastSalesContainer').hide();
                 this.getPastSales();
 
@@ -105,10 +98,24 @@
                             "_token" : "{{csrf_token()}}"
                         }
                     }).done(data => {
-                        this.products.push(data);
-                        this.total += data.price;
-                        console.log(this.total);
+                        if(data.product_found === false){
+                            alert('Product not found.');
+                        }else{
+                            this.products.push(data);
+                            this.total += data.price;
+                            console.log(this.total);
+                        }
                     })
+                },
+                employeeLogIn() {
+                    let employee_number = prompt("Enter Employee Number: ");
+                    if(employee_number != null){
+                        this.getEmployee(employee_number);
+                    }else{
+                        alert('You must enter Employee Number to use Point Of Sale.');
+                        alert('You will be redirected to the home page now. Please know your employee number before trying again');
+                        window.location.href = "/";
+                    }
                 },
                 getPastSales() {
                     $.ajax({
@@ -131,10 +138,16 @@
                             "_token" : "{{csrf_token()}}"
                         }
                     }).done(data => {
-                        this.employee.id = data.id;
-                        this.employee.employeeNumber = data.employee_number;
-                        this.employee.firstName = data.first_name;
-                        this.employee.lastName = data.last_name;
+                        if(data.employee_found === false){
+                            alert("Employee not found.");
+                            location.reload();
+
+                        }else{
+                            this.employee.id = data.id;
+                            this.employee.employeeNumber = data.employee_number;
+                            this.employee.firstName = data.first_name;
+                            this.employee.lastName = data.last_name;
+                        }
                     })
                 },
                 removeItem(index) {
@@ -161,7 +174,7 @@
                         alert('Sale completed.');
                         let payType = $("input[name=paytype]:checked").val();
                         console.log(payType);
-                        payType==='credit' ? alert('Give them thier credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
+                        payType==='credit' ? alert('Give them their credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
                         this.products = [];
                         this.total = 0;
                         this.paid = 0;
