@@ -58,7 +58,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     //Search Ajax Routes
-    Route::post('/search/product/{upc}', 'SearchController@getProductByUpc');
+    Route::post('/search/product/upc/{upc}', 'SearchController@getProductByUpc');
+    Route::post('/search/product/name/{name}', 'SearchController@getProductByName');
     Route::post('/search/employee/{employee_number}', 'SearchController@getEmployeeByEmployeeNumber');
 
     //TimeClock Ajax Routes

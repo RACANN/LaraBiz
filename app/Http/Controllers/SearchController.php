@@ -23,4 +23,9 @@ class SearchController extends Controller
         $product = DB::table('products')->where('upc', request('upc'))->first();
         return empty($product) ? response()->json(['product_found' => false]) :  response()->json($product);
     }
+    public function getProductByName(Request $request)
+    {
+        $product = DB::table('products')->where('name', request('name'))->first();
+        return empty($product) ? response()->json(['product_found' => false]) :  response()->json($product);
+    }
 }

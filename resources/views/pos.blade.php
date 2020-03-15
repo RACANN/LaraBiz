@@ -18,16 +18,37 @@
                 <div id="panel-block">
                     <h2>Employee: @{{ employee.id + ' ' + employee.firstName + ' '+employee.lastName}}</h2>
                 </div>
-                <div class="panel-block">
-
-                <p class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Enter upc code" v-model="upc">
-                    <span class="icon is-left">
+                <div class="panel-block" id="upcSearch">
+                    <p class="control has-icons-left">
+                        <input class="input" type="text" placeholder="Enter upc" v-model="upc">
+                        <span class="icon is-left">
                 <i class="fa fa-search" aria-hidden="true"></i>
                     </span>
-                </p>
+                    </p>
                 <button class="button is-primary" @Click="addItem">Search</button>
             </div>
+                <div class="panel-block" id="itemSearch">
+                    <p class="control has-icons-left">
+                        <input class="input" type="text" placeholder="Enter Item Name" v-model="item_name">
+                        <span class="icon is-left">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                    </p>
+                    <button class="button is-primary" @Click="addItem">Search</button>
+                </div>
+                <div class="panel-block">
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="searchType" value="upc" @click="enableUpcSearch" checked>
+                                UPC
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="searchType" value="item_name"  @click="enableItemNameSearch">
+                                Name
+                            </label>
+                        </div>
+
+                </div>
             <h1>Sale Items</h1>
 
             <div class="panel-block">
@@ -77,6 +98,8 @@
             data: {
                 employee: {id: '', firstName : '', lastName :  '', employeeNumber : ''},
                 upc: '',
+                item_name: '',
+                searchType: 'upc',
                 total: 0,
                 paid: 0,
                 products: [],
@@ -85,14 +108,15 @@
             mounted(){
                 this.employeeLogIn();
                 $('#pastSalesContainer').hide();
+                $('#itemSearch').hide();
                 this.getPastSales();
-
-                console.log(this.sales);
             },
             methods: {
                 addItem() {
+                    var url;
+                    url = this.searchType === 'upc' ? '/search/product/upc/'+this.upc : '/search/product/name/'+this.item_name;
                     $.ajax({
-                        url: '/search/product/'+this.upc,
+                        url: url,
                         method: 'POST',
                         data: {
                             "_token" : "{{csrf_token()}}"
@@ -106,6 +130,16 @@
                             console.log(this.total);
                         }
                     })
+                },
+                enableUpcSearch() {
+                    this.searchType = 'upc';
+                    $("#itemSearch").hide();
+                    $("#upcSearch").slideDown();
+                },
+                enableItemNameSearch() {
+                    this.searchType = 'item_name';
+                    $("#upcSearch").hide();
+                    $("#itemSearch").slideDown();
                 },
                 employeeLogIn() {
                     let employee_number = prompt("Enter Employee Number: ");
@@ -153,7 +187,6 @@
                 removeItem(index) {
                     this.total -= this.products[index].price;
                     this.products.splice(index,1)
-                    console.log(this.total);
                 },
                 completeSale() {
                     if(this.paid >= this.total){
