@@ -58,7 +58,7 @@
                     console.log(this.status_code);
                     switch (this.status_code){
                         case 1:
-                            alert('Employee does not esist');
+                            Swal.fire('Employee does not esist');
                             break;
                         case 2:
                             this.enableClockIn = true;

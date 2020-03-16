@@ -123,7 +123,7 @@
                         }
                     }).done(data => {
                         if(data.product_found === false){
-                            alert('Product not found.');
+                            Swal.fire('Product not found.');
                         }else{
                             this.products.push(data);
                             this.total += data.price;
@@ -173,7 +173,7 @@
                         }
                     }).done(data => {
                         if(data.employee_found === false){
-                            alert("Employee not found.");
+                            Swal.fire("Employee not found.");
                             location.reload();
 
                         }else{
@@ -204,16 +204,16 @@
 
                             }
                         })
-                        alert('Sale completed.');
+                        Swal.fire('Sale completed.');
                         let payType = $("input[name=paytype]:checked").val();
                         console.log(payType);
-                        payType==='credit' ? alert('Give them their credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
+                        payType==='credit' ? Swal.fire('Give them their credit card receipt') : Swal.fire('Give them $' + (this.paid-this.total) + " change back.")
                         this.products = [];
                         this.total = 0;
                         this.paid = 0;
                         this.upc = '';
                     }else{
-                        alert("You need to collect at least $" + this.total)
+                        Swal.fire("You need to collect at least $" + this.total)
                     }
                 },
                 newSale() {

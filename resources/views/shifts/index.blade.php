@@ -48,7 +48,7 @@
                     <td>{{empty($shift->shift_end) ? "No Shift End" : $shift->showTime('shift_end')}}</td>
                     <td>{{$shift->open==true ? "Shift Still Open" : $shift->getShiftLength()}}</td>
                     <td><span style="color:{{$shift->open==true ? "orange" : "green"}}">{{$shift->open==true ? "Yes" : "No"}}</span></td>
-                    <td><i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$shift->id}}" data-shift-time="{{$shift->created_at}}" data-employee-name="{{$shift->employee->last_name}}"></i></td>
+                    <td><i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$shift->id}}" data-shift-time="{{$shift->created_at}}" data-employee-name="{{$shift->employee->first_name." ".$shift->employee->last_name}}"></i></td>
                 </tr>
             @endforeach
         </tbody>
@@ -74,19 +74,33 @@
                 var employeeName = $(this).data('employee-name');
                 var shiftTime = $(this).data('shift-time');
 
-                console.log($(this).data('id'));
-                if(confirm("Are you sure you want to delete "+employeeName+"\'s shift from "+shiftTime+"?")){
-                    $.ajax({
-                        url: '/shifts/'+id,
-                        method: 'DELETE',
-                        data: {
-                            "_token" : "{{csrf_token()}}",
-                            "origin" : "manager"
-                        }
-                    });
-                    location.reload();
-                }
+                Swal.fire({
+                    title: "Are you sure you want to delete "+employeeName+"\'s shift from "+shiftTime+"?",
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '/shifts/'+id,
+                            method: 'DELETE',
+                            data: {
+                                "_token" : "{{csrf_token()}}",
+                                "origin" : "manager"
+                            }
+                        });
 
+                        Swal.fire(
+                            'Deleted!',
+                            'Shift has been deleted.',
+                            'success'
+                        )
+                        location.reload();
+                    }
+                })
 
             });
         });
