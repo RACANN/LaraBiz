@@ -49,17 +49,35 @@
             $('.fa-trash').on('click', function(e){
                 e.preventDefault();
                 var id = $(this).data('id');
-                console.log($(this).data('id'));
-                if(confirm("Are you sure you want to delete order #:"+ id + "?")){
-                    $.ajax({
-                        url: '/orders/'+id,
-                        method: 'DELETE',
-                        data: {
-                            "_token" : "{{csrf_token()}}"
-                        }
-                    });
-                    location.reload();
-                }
+
+
+                Swal.fire({
+                    title: "Are you sure you want to delete order #:"+ id + "?",
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '/orders/'+id,
+                            method: 'DELETE',
+                            data: {
+                                "_token" : "{{csrf_token()}}",
+                            }
+                        });
+
+                        Swal.fire(
+                            'Deleted!',
+                            'Order has been deleted.',
+                            'success'
+                        )
+                        location.reload();
+                    }
+                })
+
 
 
             });
@@ -107,17 +125,17 @@
                                 "total" : this.total
 
                             }
-                        })
-                        alert('Sale completed.');
+                        }
+                        Swal.fire('Sale Completed!');
                         var payType = $("input[name=paytype]").val();
-                        payType=='credit' ? alert('Give them their credit card receipt') : alert('Give them $' + (this.paid-this.total) + " change back.")
+                        payType=='credit' ? Swal.fire('Give them their credit card receipt') : Swal.fire('Give them $' + (this.paid-this.total) + " change back.")
                         this.products = [];
                         this.total = 0;
                         this.paid = 0;
                         this.upc = '';
                         location.reload();
                     }else{
-                        alert("You need to collect at least $" + this.total)
+                        Swal.fire("You need to collect at least $" + this.total)
                     }
                 }
 
