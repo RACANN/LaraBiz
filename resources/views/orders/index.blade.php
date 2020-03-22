@@ -4,7 +4,7 @@
     <h1 class="title">@section('title', 'Orders')</h1>
     <div class="navbar-menu">
         <div class="navbar-end">
-            <div class="button is-success" id="btn_add_new">Add New</div>
+            <div class="button is-success is-outlined is-rounded" id="btn_add_new">Add New Order</div>
         </div>
     </div>
 
@@ -14,13 +14,9 @@
         @foreach($orders as $order)
             <h1>Order #: {{$order->id}} | From:  {{$order->order_time}}</h1>
             <div>
-
                 <ul>
                 @foreach($order->orderDetails as $od)
-                    @foreach($od->products() as $product)
-                            <li class="list-item">{{$product->name}} | ${{$product->price}}</li>
-                    @endforeach
-
+                            <li class="list-item">{{$od->product()->name}} | ${{$od->product()->price}}</li>
                 @endforeach
                 </ul>
                 <br>
@@ -123,7 +119,6 @@
                                 "price" : this.price,
                                 "paid" : this.paid,
                                 "total" : this.total
-
                             }
                         }
                         Swal.fire('Sale Completed!');

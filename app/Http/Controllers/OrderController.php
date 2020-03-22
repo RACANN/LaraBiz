@@ -82,7 +82,7 @@ class OrderController extends Controller
     public function showAll()
     {
         $orders = Order::all();
-        return view('orders.partials.past_orders', compact('orders'));
+        return view('orders._partials.past_orders', compact('orders'));
     }
 
     /**

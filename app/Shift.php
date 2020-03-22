@@ -14,14 +14,21 @@ class Shift extends Model
 
     public function getShiftLength()
     {
-        $shiftLength = gmdate('H:i:s', Carbon::parse($this->shift_end)->diffInSeconds(Carbon::parse($this->shift_start)));
+        //$shiftLength = gmdate('H:i:s', Carbon::parse($this->shift_end)->diffInSeconds(Carbon::parse($this->shift_start)));
 
-        return ! empty($this->getBreakLength()) ? gmdate('H:i:s', (strtotime($shiftLength) - strtotime($this->getBreakLength()))) : $shiftLength;
+        $shiftLength =  Carbon::parse($this->shift_end)->floatDiffInRealHours(Carbon::parse($this->shift_start));
+
+        return ! empty($this->getBreakLength()) ? Carbon::parse($this->getBreakLength())->floatDiffInRealHours($shiftLength) : $shiftLength;
+    }
+
+    public function cost()
+    {
+        return $this->getShiftLength() * $this->employee->pay;
     }
 
     public function getBreakLength()
     {
-        return ! empty($this->break_start) ? gmdate('H:i:s', Carbon::parse($this->break_end)->diffInSeconds(Carbon::parse($this->break_start))) : '';
+        return ! empty($this->break_start) ?  Carbon::parse($this->break_end)->floatDiffInRealHours(Carbon::parse($this->break_start)) : '';
     }
 
     public static function checkForOpenShifts($id)

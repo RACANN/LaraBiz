@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
 {
-    public function products()
+    public function product()
     {
-        return Product::all()->where('id', '=', $this->product_id);
+        return Product::where('id', '=', $this->product_id)->first();
+    }
+    public function category()
+    {
+        return Category::where('id', '=', $this->product()->category_id)->first();
     }
 
     public function order()

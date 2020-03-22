@@ -16,6 +16,19 @@
                 </div>
 
                 <div class="field">
+                    <label>Category</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="category_id">
+                                @foreach($product_data['categories'] as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
                     <label>Name</label>
                     <div class="control">
                         <input class="input" type="text" name="name" required>
