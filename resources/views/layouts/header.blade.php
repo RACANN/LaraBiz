@@ -50,7 +50,7 @@
     <a  class="navbar-item" href="/shifts">Shifts</a>
     <a  class="navbar-item" href="/orders">Orders</a>
     <a  class="navbar-item" href="/products">Inventory</a>
-
+    <a  class="navbar-item" href="/reports">Reports</a>
     <div class="navbar-burger">
       <span></span>
       <span></span>

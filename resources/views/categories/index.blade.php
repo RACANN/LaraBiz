@@ -1,40 +1,29 @@
 @extends('layouts.master')
 @section('content')
-    @include('products.modals.add_product_modal')
-    <h1 class="title">@section('title', 'Products')</h1>
+    @include('categories.modals.add_category_modal')
+    <h1 class="title">@section('title', 'Categories')</h1>
     <div class="navbar-menu">
         <div class="navbar-end">
-            <a class="button is-success is-outlined is-rounded" href="/categories">Manage Categories</a>
-            <div class="button is-success is-outlined is-rounded" id="btn_add_new">Add New Product</div>
+            <div class="button is-success is-outlined is-rounded" id="btn_add_new">Add New Category</div>
         </div>
     </div>
 
     <hr>
-    <h1>Products</h1>
+
     <table id="products" class="display">
         <thead>
         <tr>
-            <th>Upc</th>
             <th>Name</th>
-            <th>Description</th>
-            <th>Cost</th>
-            <th>Price</th>
-            <th>Profit</th>
+            <th>Taxable</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        @foreach($product_data['products'] as $product)
-            <?php $product->profit() > 0 ? $color = '#33b322' : ($product->profit() < 0 ? $color='#ff0000': $color = '#000000');?>
+        @foreach($categories as $category)
             <tr>
-                <td><a href="/products/{{$product->id}}/edit">{{$product->upc}}</a></td>
-                <td>{{$product->name}}</td>
-                <td>{{$product->description}}</td>
-                <td>{{number_format($product->cost, 2)}}</td>
-                <td>{{number_format($product->price, 2)}}</td>
-                <td><?php echo "<span style='color:".$color."'>";?>{{ number_format($product->profit(), 2)}}<?php echo "</span>" ?></td>
-                <td><i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$product->id}}" data-product-name="{{$product->name}}"></i></td>
-
+                <td><a href="/categories/{{$category->id}}/edit">{{$category->name}}</a></td>
+                <td>{{$category->taxable == true ? "Yes" : "No"}}</td>
+                <td><i style="color:#9db2e0" class="fa fa-trash fa-lg" data-id="{{$category->id}}" data-category-name="{{$category->name}}"></i></td>
             </tr>
 
         @endforeach
@@ -48,7 +37,7 @@
 
             $('#products').DataTable({
                 "columnDefs": [
-                    { "orderable": false, "targets": 6 }
+                    { "orderable": false, "targets": 2 }
                 ]
             });
 
@@ -64,10 +53,10 @@
 
             $(".fa-trash").on("click", function(){
                 var id = $(this).data('id');
-                var productName = $(this).data('product-name');
+                var catName = $(this).data('category-name');
 
                 Swal.fire({
-                    title: "Are you sure you want to delete "+ productName + "?",
+                    title: "Are you sure you want to delete category  "+ catName + "?",
                     text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
@@ -77,7 +66,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: '/products/'+id,
+                            url: '/categories/'+id,
                             method: 'DELETE',
                             data: {
                                 "_token" : "{{csrf_token()}}"
@@ -86,7 +75,7 @@
 
                         Swal.fire(
                             'Deleted!',
-                            'Employee has been deleted.',
+                            'Category has been deleted.',
                             'success'
                         )
                         location.reload();

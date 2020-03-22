@@ -5,15 +5,11 @@
 
             <ul>
                 @foreach($order->orderDetails as $od)
-                    @foreach($od->products() as $product)
-                        <li class="list-item">{{$product->name}} | ${{$product->price}}</li>
-                    @endforeach
-
+                    <li class="list-item">{{$od->product()->name}} | ${{$od->product()->price}}</li>
                 @endforeach
             </ul>
             <br>
             <p>Order Total: ${{$order->total}} | Amount Paid: ${{$order->paid}} | Paytype: {{$order->paytype}}</p>
-            <hr>
         </div>
     @endforeach
 </div>

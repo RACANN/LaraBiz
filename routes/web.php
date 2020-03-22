@@ -35,6 +35,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('products/{product}', 'ProductController@update')->name('products.update');
     Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 
+    Route::get('/categories', 'CategoriesController@index')->name('products.all');
+    Route::get('/categories/{category}', 'CategoriesController@show')->name('categories.show');
+    Route::get('/categories/new', 'CategoriesController@create')->name('categories.new');
+    Route::get('/categories/{category}/edit', 'CategoriesController@edit')->name('categories.edit');
+    Route::post('/categories', 'CategoriesController@store')->name('categories.store');
+    Route::patch('categories/{category}', 'CategoriesController@update')->name('categories.update');
+    Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('categories.destroy');
+
     Route::post('/orders', 'OrderController@store');
     Route::get('/orders', 'OrderController@index');
     Route::post('/orders/show/all', 'OrderController@showAll');
@@ -54,7 +62,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/pos', function () {
-        return view('/pos');
+        return view('pos');
+    });
+    Route::get('/reports', function () {
+        return view('/reports/reports');
     });
 
     //Search Ajax Routes
@@ -67,4 +78,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/timeclock/break/start/', 'TimeClockController@StartBreak');
     Route::post('/timeclock/break/end/', 'TimeClockController@EndBreak');
     Route::post('/timeclock/clockout/', 'TimeClockController@ClockOut');
+
+    //Report Ajax Routes
+    Route::get('/reports/labor/total/employees', 'ReportsController@laborByEmployee');
+    Route::get('/reports/labor/total/cost', 'ReportsController@getTotalLaborCost');
+    Route::get('/reports/labor/total/hours', 'ReportsController@totalLaborHours');
+    Route::get('/reports/sales/total', 'ReportsController@totalSales');
+    Route::get('/reports/total/profits', 'ReportsController@totalProfits');
+    Route::get('/reports/total/sales/profits', 'ReportsController@getSalesProfits');
+    Route::get('/reports/sales/total/categories', 'ReportsController@totalSalesByCategory');
 });

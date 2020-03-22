@@ -19,7 +19,7 @@
     <h1 class="title">Shifts</h1>
     <div class="navbar-menu">
         <div class="navbar-end">
-            <div class="button is-success" id="btn_add_new">Add New</div>
+            <div class="button is-success is-outlined is-rounded" id="btn_add_new">Add New Shift</div>
         </div>
     </div>
     <hr />
