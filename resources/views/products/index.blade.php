@@ -40,6 +40,10 @@
         @endforeach
         </tbody>
     </table>
+    <br>
+    <hr>
+    <a href="/exports/products"><i class="fa fa-file-csv fa-2x is-pulled-right"></i></a>
+    <br>
 
 @section('custom-js')
     <script>
@@ -61,7 +65,6 @@
             $('#close_add_new').on("click", function(){
                 $('#add_new_modal').removeClass('is-active')
             });
-
             $(".fa-trash").on("click", function(){
                 var id = $(this).data('id');
                 var productName = $(this).data('product-name');

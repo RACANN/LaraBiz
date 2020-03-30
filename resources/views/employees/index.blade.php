@@ -36,7 +36,10 @@
   @endforeach
 
 </table>
-  <hr>
+<br>
+<hr>
+<a href="/exports/employees"><i class="fa fa-file-csv fa-2x is-pulled-right"></i></a>
+<br>
 
 @endsection
 

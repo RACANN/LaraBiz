@@ -90,4 +90,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/reports/total/profits', 'ReportsController@totalProfits');
     Route::get('/reports/total/sales/profits', 'ReportsController@getSalesProfits');
     Route::get('/reports/sales/total/categories', 'ReportsController@totalSalesByCategory');
+
+    //Export Ajax Routes
+    Route::get('/exports/employees', 'ExportController@exportEmployees');
+    Route::get('/exports/products', 'ExportController@exportProducts');
+    Route::get('/exports/shifts', 'ExportController@exportShifts');
+
 });
