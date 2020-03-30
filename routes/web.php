@@ -49,6 +49,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/orders/data', 'OrderController@indexAjax');
     Route::delete('/orders/{order}', 'OrderController@destroy');
 
+    Route::get('/payrolls', 'PayrollController@index');
+    Route::post('/payrolls', 'PayrollController@store');
+
     //Page Routes
     Route::get('/', function () {
         return view('EmployeePage');
