@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Kelly+Slab&display=swap" rel="stylesheet">
+    @yield('custom-css')
     <title>@yield('title')</title>
   </head>
   <body>
@@ -30,10 +31,7 @@
         @include('layouts.header')
 
         <br />
-
         @yield('content')
-        
-
       </div><!-- /.row -->
 
       <br />

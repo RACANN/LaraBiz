@@ -51,6 +51,7 @@
     <a  class="navbar-item" href="/orders">Orders</a>
     <a  class="navbar-item" href="/products">Inventory</a>
     <a  class="navbar-item" href="/reports">Reports</a>
+    <a class= "navbar-item" href="/payrolls">Payroll</a>
     <div class="navbar-burger">
       <span></span>
       <span></span>

@@ -18,7 +18,7 @@ class Shift extends Model
 
         $shiftLength =  Carbon::parse($this->shift_end)->floatDiffInRealHours(Carbon::parse($this->shift_start));
 
-        return ! empty($this->getBreakLength()) ? Carbon::parse($this->getBreakLength())->floatDiffInRealHours($shiftLength) : $shiftLength;
+        return ! empty($this->getBreakLength()) ? $shiftLength -  $this->getBreakLength() : $shiftLength;
     }
 
     public function cost()
@@ -29,6 +29,14 @@ class Shift extends Model
     public function getBreakLength()
     {
         return ! empty($this->break_start) ?  Carbon::parse($this->break_end)->floatDiffInRealHours(Carbon::parse($this->break_start)) : '';
+    }
+
+    public static function anyOpenShifts()
+    {
+        //return Shift::all()->where('open', '=', 'true')->count() == 0 ? false : true;
+        $count = self::all()->where('open', '=', '1')->count();
+
+        return ($count != 0) ? true : false;
     }
 
     public static function checkForOpenShifts($id)
@@ -64,7 +72,6 @@ class Shift extends Model
                 return Carbon::parse($this->getShiftLength());
             default:
                 return '';
-
         }
     }
 

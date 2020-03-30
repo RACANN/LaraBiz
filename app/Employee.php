@@ -13,23 +13,18 @@ class Employee extends Model
     {
         return $this->hasMany(Shift::class);
     }
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class);
+    }
+    public  function getFullName()
+    {
+        return $this->first_name." ".$this->last_name;
+    }
 
     public function calcPay($time)
     {
         return $time * $this->pay;
     }
 
-    public function calcPayRoll($startPayDate, $endPayDate)
-    {
-        $shiftsInRange = $this->shifts->whereBetween('shift_start', [$startPayDate, $endPayDate])->get();
-
-        $pay = 0;
-
-        foreach ($shiftsInRange as $shift) {
-            $time = $shift->getShiftLength();
-            $pay += $this->calcPay($time);
-        }
-
-        return $pay;
-    }
 }
