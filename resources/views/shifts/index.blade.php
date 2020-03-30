@@ -53,7 +53,10 @@
             @endforeach
         </tbody>
     </table>
-
+    <br>
+    <hr>
+    <a href="/exports/shifts"><i class="fa fa-file-csv fa-2x is-pulled-right"></i></a>
+    <br>
 @endsection
 @section('custom-js')
     <script>
