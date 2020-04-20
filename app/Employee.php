@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    protected $fillable = ['ssn', 'employee_number', 'first_name', 'last_name', 'birth_date', 'phone', 'email',
+    protected $fillable = ['user_id', 'ssn', 'employee_number', 'first_name', 'last_name', 'birth_date', 'phone', 'email',
         'hire_date', 'pay', ];
 
     public function shifts()
     {
         return $this->hasMany(Shift::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
     public function payrolls()
     {

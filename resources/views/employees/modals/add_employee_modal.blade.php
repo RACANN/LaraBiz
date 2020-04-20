@@ -9,6 +9,16 @@
             <form method="POST" action="/employees">
                 {{ csrf_field() }}
                 <div class="field">
+                    <label class="label">User</label>
+                    <div class="field">
+                        <select name="user_id" type="email" required>
+                            @foreach($user_ids as $user_id)
+                                <option value="{{$user_id->id}}">{{$user_id->email}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
                     <label class="label">Employee Number</label>
                     <div class="control">
                         <input class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" name="employee_number" maxlength="4" required>
@@ -49,12 +59,6 @@
                     <label class="label">Phone</label>
                     <div class="control">
                         <input class="input" type="text" name="phone" required>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control">
-                        <input class="input" type="email" name="email" required>
                     </div>
                 </div>
                 <div class="field">
