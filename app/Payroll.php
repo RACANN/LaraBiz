@@ -33,11 +33,19 @@ class Payroll extends Model
                 $payroll->total_paid = 0;
                 $payroll->save();
                 if($interval==1){
-                    $data = $payroll->runWeek($start_date,Carbon::parse($start_date)->addWeek(), $employee);
+                    $weeks = [];
+                    array_push($weeks,$payroll->runWeek($start_date,Carbon::parse($start_date)->addWeek(), $employee));
+                    $data = [
+                        "hours" => $weeks[0]['hours'],
+                        "ot_hours" => $weeks[0]['ot_hours'],
+                        "base_pay" => $weeks[0]['base_pay'],
+                        "ot_pay" => $weeks[0]['ot_pay'],
+                        "total_pay" => $weeks[0]['total_pay'],
+                    ];
                 }else {
                     $weeks = [];
-                    array_push($weeks,runWeek($start_date,Carbon::parse($start_date)->addWeek(), $employee));
-                    array_push($weeks,runWeek($start_date->addWeek(),Carbon::parse($start_date)->addWeeks(2), $employee));
+                    array_push($weeks,$payroll->runWeek($start_date,Carbon::parse($start_date)->addWeek(), $employee));
+                    array_push($weeks,$payroll->runWeek(Carbon::parse($start_date)->addWeek(),Carbon::parse($start_date)->addWeeks(2), $employee));
                     $data = [
                         "hours" => $weeks[0]['hours'] + $weeks[1]['hours'],
                         "ot_hours" => $weeks[0]['ot_hours'] + $weeks[1]['ot_hours'],
@@ -52,6 +60,7 @@ class Payroll extends Model
             $payroll->ot_paid = $data['ot_pay'];
             $payroll->total_paid = $data['total_pay'];
             $payroll->save();
+            return redirect('/payrolls');
         }
     }
 

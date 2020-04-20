@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,13 +17,15 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::all();
+        $user_ids = DB::table("users")->where('group_id', '=', '4')->get(['id', 'email']);
 
-        return view('employees.index', compact('employees'));
+        return view('employees.index', compact('employees'), compact('user_ids'));
     }
 
     public function indexAsync()
     {
         $employees = Employee::all();
+
 
         return response()->json(compact('employees'));
     }
@@ -50,27 +53,32 @@ class EmployeeController extends Controller
             'employee_number' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
+            'user_id' => 'required',
             'phone' => 'required',
             'birth_date' => 'required',
             'hire_date' => 'required',
             'pay' => 'required',
             ]);
 
+        $user = User::where('id', '=', request('user_id'))->first();
         $employee = new Employee;
 
         $employee->ssn = request('ssn');
+        $employee->user_id = request('user_id');
         $employee->employee_number = request('employee_number');
         $employee->first_name = request('first_name');
         $employee->last_name = request('last_name');
-        $employee->email = request('email');
+        $employee->email = $user->email;
         $employee->phone = request('phone');
         $employee->birth_date = request('birth_date');
         $employee->hire_date = request('hire_date');
         $employee->pay = request('pay');
         $employee->position = request('position');
 
+        $user->group_id = 3;
+
         $employee->save();
+        $user->save();
 
         return redirect('/employees');
     }
@@ -111,7 +119,6 @@ class EmployeeController extends Controller
             'employee_number' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
             'phone' => 'required',
             'birth_date' => 'required',
             'hire_date' => 'required',
@@ -122,7 +129,6 @@ class EmployeeController extends Controller
         $employee->employee_number = request('employee_number');
         $employee->first_name = request('first_name');
         $employee->last_name = request('last_name');
-        $employee->email = request('email');
         $employee->phone = request('phone');
         $employee->birth_date = request('birth_date');
         $employee->hire_date = request('hire_date');

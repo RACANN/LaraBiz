@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.limited')
 
 @section('content')
 <div class="container">
@@ -11,10 +11,10 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
+                        <div class="field">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
-                            <div class="col-md-6">
+                            <div class="field">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
@@ -25,10 +25,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="field">
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
-                            <div class="col-md-6">
+                            <div class="field">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
@@ -39,10 +39,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="field">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
-                            <div class="col-md-6">
+                            <div class="field">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
@@ -53,15 +53,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="field">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
-                            <div class="col-md-6">
+                            <div class="field">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="field">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register

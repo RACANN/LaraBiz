@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.minimal')
 @section('content')
     <div id="pos">
         <nav class="panel">
@@ -106,7 +106,7 @@
                 sales: []
             },
             mounted(){
-                this.employeeLogIn();
+                this.getEmployee();
                 $('#pastSalesContainer').hide();
                 $('#itemSearch').hide();
                 this.getPastSales();
@@ -164,9 +164,9 @@
 
                     })
                 },
-                getEmployee(employee_number) {
+                getEmployee() {
                     $.ajax({
-                        url: '/search/employee/'+employee_number,
+                        url: '/search/employee/{{$employee_number}}',
                         method: 'POST',
                         data: {
                             "_token" : "{{csrf_token()}}"

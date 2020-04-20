@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.minimal')
 @section('content')
     <div id="timeclock">
         <div class="card">

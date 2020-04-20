@@ -1,14 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
   </div>
-    <a class="navbar-item" href="/">
-      <i class="fa fa-home"></i>
-    </a>
-
-    <a  class="navbar-item" href="/timeclock"><i class="fa fa-clock"></i></a>
-    <a  class="navbar-item" href="/pos"><i class="fa fa-shopping-bag"></i></a>
-    <a  class="navbar-item" href=""><i class="fa fa-question-circle"></i></a>
-
     @if (Route::has('login'))
               @auth
                   <div class="navbar-end">

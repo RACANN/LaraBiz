@@ -28,8 +28,29 @@
 
         <div class="row">
 
-            @include('layouts.minimalheader')
-
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                @if (Route::has('login'))
+                    @auth
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a class="button is-primary" href="{{ url('/home') }}">Home</a>
+                                    <a class="button is-light" href="{{ url('/logout') }}">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                            <div class="navbar-end">
+                                <div class="navbar-item">
+                                    <div class="buttons">
+                                        <a class="button is-primary" href="{{ route('login') }}">Login</a>
+                                        <a  class="button is-light" href="{{ route('register') }}">Register</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endauth
+                        @endif
+            </nav>
             <br />
             @yield('content')
         </div><!-- /.row -->
