@@ -1,4 +1,4 @@
-<footer class="footer is-primary">
+<footer class="footer">
   <div class="box">
     <div class="content has-text-centered">
       <p>

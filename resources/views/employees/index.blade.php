@@ -4,7 +4,7 @@
 @include("employees.modals.add_employee_modal")
     <div class="navbar-menu">
         <div class="navbar-end">
-            <div class="button is-success is-outlined is-rounded" id="btn_add_new">Add New Employee</div>
+            <div class="button is-info is-outlined is-rounded" id="btn_add_new">Add New Employee</div>
         </div>
     </div>
 <h1 class="title">Employees</h1>

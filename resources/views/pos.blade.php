@@ -25,7 +25,7 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
                     </span>
                     </p>
-                <button class="button is-primary" @Click="addItem">Search</button>
+                <button class="button is-info" @Click="addItem">Search</button>
             </div>
                 <div class="panel-block" id="itemSearch">
                     <p class="control has-icons-left">
@@ -34,7 +34,7 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
                     </span>
                     </p>
-                    <button class="button is-primary" @Click="addItem">Search</button>
+                    <button class="button is-info" @Click="addItem">Search</button>
                 </div>
                 <div class="panel-block">
                         <div class="control">

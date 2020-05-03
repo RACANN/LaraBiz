@@ -4,8 +4,8 @@
     <h1 class="title">@section('title', 'Products')</h1>
     <div class="navbar-menu">
         <div class="navbar-end">
-            <a class="button is-success is-outlined is-rounded" href="/categories">Manage Categories</a>
-            <div class="button is-success is-outlined is-rounded" id="btn_add_new">Add New Product</div>
+            <a class="button is-info is-outlined is-rounded" href="/categories">Manage Categories</a>
+            <div class="button is-info is-outlined is-rounded" id="btn_add_new">Add New Product</div>
         </div>
     </div>
 

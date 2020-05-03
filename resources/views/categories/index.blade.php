@@ -4,7 +4,7 @@
     <h1 class="title">@section('title', 'Categories')</h1>
     <div class="navbar-menu">
         <div class="navbar-end">
-            <div class="button is-success is-outlined is-rounded" id="btn_add_new">Add New Category</div>
+            <div class="button is-info is-outlined is-rounded" id="btn_add_new">Add New Category</div>
         </div>
     </div>
 

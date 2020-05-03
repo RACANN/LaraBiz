@@ -13,14 +13,14 @@
                     <input class="input" type="text" placeholder="Enter Employee Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" v-model="employee_number">
                 </div>
                <div class="control has-text-centered">
-                   <button class="button is-primary is-rounded" @Click="getEmployeeData">Enter</button>
+                   <button class="button is-info is-rounded" @Click="getEmployeeData">Enter</button>
                </div>
             </div>
             <footer class="card-footer" id="timeclockButtons">
-                <div id="clock-in" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableClockIn" @click="clockIn">Clock In</div>
-                <div id="break-start" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableBreakStart" @click="startBreak">Break Start</div>
-                <div id="break-end" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableBreakEnd" @click="endBreak">Break End</div>
-                <div id="clock out" class="button card-footer-item is-outlined is-primary timeclock-button" :disabled="!enableClockOut" @click="clockOut">Clock Out</div>
+                <div id="clock-in" class="button card-footer-item is-outlined is-info timeclock-button" :disabled="!enableClockIn" @click="clockIn">Clock In</div>
+                <div id="break-start" class="button card-footer-item is-outlined is-info timeclock-button" :disabled="!enableBreakStart" @click="startBreak">Break Start</div>
+                <div id="break-end" class="button card-footer-item is-outlined is-info timeclock-button" :disabled="!enableBreakEnd" @click="endBreak">Break End</div>
+                <div id="clock out" class="button card-footer-item is-outlined is-info timeclock-button" :disabled="!enableClockOut" @click="clockOut">Clock Out</div>
             </footer>
         </div>
     </div>

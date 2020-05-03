@@ -6,7 +6,7 @@
                   <div class="navbar-end">
                     <div class="navbar-item">
                       <div class="buttons">
-                        <a class="button is-primary" href="{{ url('/home') }}">Home</a>
+                        <a class="button is-info" href="{{ url('/home') }}">Home</a>
                         <a class="button is-light" href="{{ url('/logout') }}">Logout</a>
                       </div>
                     </div>
@@ -15,7 +15,7 @@
                   <div class="navbar-end">
                     <div class="navbar-item">
                       <div class="buttons">
-                        <a class="button is-primary" href="{{ route('login') }}">Login</a>
+                        <a class="button is-info" href="{{ route('login') }}">Login</a>
                         <a  class="button is-light" href="{{ route('register') }}">Register</a>
                       </div>
                     </div>
