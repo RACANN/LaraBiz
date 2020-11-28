@@ -1,4 +1,9 @@
 @extends('layouts.master')
+@section('custom-css')
+    <style>
+        .close{}
+    </style>
+@endsection
 @section('content')
 
 @include("employees.modals.add_employee_modal")
@@ -44,54 +49,16 @@
 @endsection
 
 @section('custom-js')
+    <script src="{{asset('/js/models/employee.js')}}"></script>
   <script>
       $(document).ready( function () {
-          var employee_table = $('#employees').DataTable();
-          $('#btn_add_new').on("click", function(){
-            $('#add_new_modal').addClass('is-active').fadeIn();
-          });
-          $('#btn_cancel_add_new').on("click", function(){
-              $('#add_new_modal').removeClass('is-active')
-          });
-          $('#close_add_new').on("click", function(){
-              $('#add_new_modal').removeClass('is-active')
-          });
-          $('.fa-trash').on('click', function(e){
-              e.preventDefault();
-              var id = $(this).data('id');
-              var firstName = $(this).data('first-name');
-              var lastName= $(this).data('last-name');
 
-              Swal.fire({
-                  title: "Are you sure you want to delete "+firstName + " " + lastName + "?",
-                  text: "You won't be able to revert this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, delete it!'
-              }).then((result) => {
-                  if (result.value) {
-                      $.ajax({
-                          url: '/employees/'+id,
-                          method: 'DELETE',
-                          data: {
-                              "_token" : "{{csrf_token()}}"
-                          }
-                      });
-
-                      Swal.fire(
-                          'Deleted!',
-                          'Employee has been deleted.',
-                          'success'
-                      )
-                      location.reload();
-                  }
-              })
-
-
+          var employee_table = $('#employees').DataTable({
 
           });
+          var employee = new Employee();
+          employee.registerModal("#add_new_modal", "#btn_add_new", ".close");
+          employee.registerDelete('.fa-trash', "{{csrf_token()}}");
       } );
   </script>
 @endsection

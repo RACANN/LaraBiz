@@ -3,7 +3,7 @@
     <div class="modal-card">
         <header class="modal-card-head">
             <p class="modal-card-title">New Employee</p>
-            <div class="delete is-danger" aria-label="close" id="close_add_new"></div>
+            <div class="delete is-danger close" aria-label="close"></div>
         </header>
         <section class="modal-card-body">
             <form method="POST" action="/employees">
@@ -78,7 +78,7 @@
                         <button class="button is-link" type="submit">Add Item</button>
                     </div>
                     <div class="control">
-                        <div class="button is-link" id="btn_cancel_add_new">Cancel</div>
+                        <div class="button is-link close">Cancel</div>
                     </div>
                 </div>
             </form>

@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/employees/{employee}/edit', 'EmployeeController@edit')->name('employees.edit');
         Route::post('/employees', 'EmployeeController@store')->name('employees.store');
         Route::patch('/employees/{employee}', 'EmployeeController@update')->name('employees.update');
-        Route::delete('/employees/{employee}', 'EmployeeController@destroy')->name('employees.destroy');
+        Route::post('/employees/{employee}', 'EmployeeController@destroy')->name('employees.destroy');
 
         Route::get('/shifts', 'ShiftController@index')->name('shifts.all');
         Route::get('/shifts/{shift}', 'ShiftController@show')->name('shifts.show');
