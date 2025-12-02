@@ -1,3 +1,7 @@
+#-----------------------------------------------------------------------
+# THIS PROJECT IS NO LONGER BEING UPDATED OR MAINTAINED AND IS ARCHIVED! 
+#-----------------------------------------------------------------------
+
 # LaraBiz
 
 ## Summary
